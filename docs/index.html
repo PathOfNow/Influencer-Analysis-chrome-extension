@@ -13,6 +13,8 @@
         .download-btn { display: inline-block; background: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-size: 18px; }
         .download-btn:hover { background: #45a049; }
         .note { background: #fff3cd; padding: 10px; border-radius: 4px; border-left: 4px solid #ffc107; }
+        .img-container { margin: 15px 0; text-align: center; }
+        .img-container img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
     </style>
 </head>
 <body>
@@ -28,6 +30,10 @@
         <strong>第 1 步：下载插件</strong><br>
         点击上面的“点击下载最新版本”按钮，下载 <code>.zip</code> 文件。<br>
         下载后解压，你会看到一个文件夹，里面包含 <code>manifest.json</code> 等文件。
+        <!-- 这里放图片 -->
+        <div class="img-container">
+            <img src="images/download-step.png" alt="下载插件截图" title="下载界面示例">
+        </div>
     </div>
     
     <div class="step">
@@ -35,11 +41,17 @@
         在 Chrome 浏览器地址栏输入：
         <div class="code">chrome://extensions/</div>
         按回车键进入。
+        <div class="img-container">
+            <img src="images/chrome-extensions.png" alt="Chrome扩展管理页面" title="打开扩展管理页面">
+        </div>
     </div>
     
     <div class="step">
         <strong>第 3 步：开启开发者模式</strong><br>
         在页面右上角，找到 <strong>“开发者模式”</strong> 开关，点击打开（变成蓝色）。
+        <div class="img-container">
+            <img src="images/developer-mode.png" alt="开启开发者模式" title="开发者模式开关">
+        </div>
     </div>
     
     <div class="step">
@@ -47,11 +59,17 @@
         点击页面左上角的 <strong>“加载已解压的扩展程序”</strong> 按钮。<br>
         在弹出的窗口中，选择你在第 1 步解压出来的 <strong>文件夹</strong>。<br>
         点击“选择文件夹”。
+        <div class="img-container">
+            <img src="images/load-extension.png" alt="加载解压的扩展程序" title="选择文件夹">
+        </div>
     </div>
     
     <div class="step">
         <strong>✅ 完成！</strong><br>
         插件图标会出现在 Chrome 右上角，点击即可使用。
+        <div class="img-container">
+            <img src="images/extension-icon.png" alt="插件图标在浏览器右上角" title="安装完成">
+        </div>
     </div>
     
     <h2>⚠️ 注意事项</h2>
