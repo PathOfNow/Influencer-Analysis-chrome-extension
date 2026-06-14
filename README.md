@@ -20,5 +20,3 @@
 请查看 [安装指南页面](https://tanggao1314.github.io/Influencer-Analysis-chrome-extension/) 或提 issue
 
 ---
-
-⭐ 如果觉得好用，欢迎 Star！
