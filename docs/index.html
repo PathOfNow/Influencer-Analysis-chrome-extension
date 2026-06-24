@@ -574,7 +574,7 @@
         const container = document.getElementById('manual-content');
         if (!container) return;
 
-        fetch('manual.md')
+        fetch('docs/USER_GUIDE.md')
             .then(response => {
                 if (!response.ok) throw new Error('手册加载失败');
                 return response.text();
