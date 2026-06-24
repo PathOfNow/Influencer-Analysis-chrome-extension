@@ -4,7 +4,7 @@
 
 ## 📥 下载安装
 
-👉 **点此下载最新版本**：[Releases 页面](https://github.com/PathOfNow/Influencer-Analysis-chrome-extension/releases/latest)
+👉 **点此下载最新版本**：[Releases 页面](https://github.com/PathOfNow/Influencer-Analysis-chrome-extension/releases/latest/download/release.zip)
 
 👉 **在线安装指导**：[GitHub Pages 安装指南](https://github.com/PathOfNow/Influencer-Analysis-chrome-extension/)
 
