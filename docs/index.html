@@ -386,6 +386,7 @@
             <li><a href="#tutorial">📘 核心功能</a></li>
             <li><a href="#advantages">✨ 工具优势</a></li>
             <li><a href="#metrics">📊 红人画像</a></li>
+            <li><a href="#manual">📖 操作手册</a></li>
             <li><a href="#changelog">📝 更新日志</a></li>
             <li><a href="#contact">📧 联系与反馈</a></li>
         </ul>
@@ -522,6 +523,10 @@
             <div class="metric-item"><div class="icon">💬</div><div class="title">评论情绪分析</div><div class="desc">基于NLP的正面/负面比例</div><span class="metric-badge">正面 > 80%</span></div>
         </div>
 
+        <!-- 操作手册（动态加载 Markdown） -->
+        <h2 id="manual" class="anchor-offset">📖 操作手册</h2>
+        <div id="manual-content" class="markdown-body"></div>
+
         <!-- 更新日志 & 联系 -->
         <h2 id="changelog" class="anchor-offset">📝 更新日志</h2>
         <ul style="list-style-type: none; padding-left: 0; font-size: 1.05rem;">
@@ -559,6 +564,28 @@
         }
         window.addEventListener('scroll', updateActiveToc);
         window.addEventListener('load', updateActiveToc);
+    })();
+</script>
+<!-- Markdown 渲染相关资源 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+    (function() {
+        const container = document.getElementById('manual-content');
+        if (!container) return;
+
+        fetch('manual.md')
+            .then(response => {
+                if (!response.ok) throw new Error('手册加载失败');
+                return response.text();
+            })
+            .then(markdown => {
+                container.innerHTML = marked.parse(markdown);
+            })
+            .catch(error => {
+                container.innerHTML = '<p style="color:#c0392b;">⚠️ 操作手册暂时无法加载，请稍后重试。</p>';
+                console.error('手册加载失败:', error);
+            });
     })();
 </script>
 </body>
