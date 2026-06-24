@@ -566,7 +566,7 @@
         window.addEventListener('load', updateActiveToc);
     })();
 </script>
-<!-- Markdown 渲染相关资源 -->
+<!-- Markdown 渲染资源 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
@@ -583,10 +583,21 @@
                 container.innerHTML = marked.parse(markdown);
             })
             .catch(error => {
-                container.innerHTML = '<p style="color:#c0392b;">⚠️ 操作手册暂时无法加载，请稍后重试。</p>';
+                // 加载失败时显示跳转链接
+                container.innerHTML = `
+                    <p style="color:#c0392b; font-size: 1.05rem;">
+                        ⚠️ 操作手册暂时无法加载。<br>
+                        <a href="https://github.com/PathOfNow/Influencer-Analysis-chrome-extension/blob/main/docs/USER_GUIDE.md"
+                           target="_blank"
+                           style="color: #2b7a4b; font-weight: 600; text-decoration: underline;">
+                            📘 点击此处在线查看操作手册
+                        </a>
+                    </p>`;
                 console.error('手册加载失败:', error);
             });
     })();
 </script>
+</body>
+</html>
 </body>
 </html>
