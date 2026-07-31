@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Instagram Influencer Analytics Assistant (PathOfNow)</title>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .lang-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .lang-btn:hover {
+            background-color: #0056b3;
+        }
+
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            padding-right: 120px; /* 防止标题与切换按钮重叠 */
+        }
+
+        h2 {
+            margin-top: 24px;
+        }
+
+        .notice-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 12px 16px;
+            margin: 16px 0;
+            font-size: 0.95em;
+        }
+
+        footer {
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* 默认先全部隐藏，等待脚本检测语言后再展示，防止闪烁 */
+        .lang-zh, .lang-en { display: none; }
+
+        body.show-zh .lang-zh { display: block; }
+        body.show-en .lang-en { display: block; }
+    </style>
+</head>
+
+<body class="show-en">
+    <!-- 语言切换按钮 -->
+    <div class="lang-switch">
+        <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">中文</button>
+    </div>
+
+    <!-- ==================== 英文内容 ==================== -->
+    <div class="lang-en">
+        <h1>Privacy Policy</h1>
+        <p>Last Updated: July 28, 2026</p>
+        <p>Effective Date: July 28, 2026</p>
+
+        <p>Welcome to "Instagram Influencer Analytics Assistant" (hereinafter referred to as "this Extension"). This extension is developed and operated by PathOfNow (hereinafter referred to as "we"). We value your privacy and are committed to protecting your personal information. This Privacy Policy is intended to explain how we collect, use, store, and protect your information.</p>
+
+        <h2>1. Data Collection & Usage</h2>
+        <p>To provide influencer analytics and data aggregation services, this Extension only collects and processes data necessary for functionality upon your explicit action:</p>
+        <ul>
+            <li><strong>Personal Identification Information:</strong> When you sign in using your Google account, we obtain your public Profile information (such as Google User ID, Email) via <code>chrome.identity</code>. This information is strictly used for identity authentication, user license verification, and account identification. We never access or store your Google password.</li>
+            <li><strong>Website Content & Instagram Public Data:</strong> When you actively click the "Start Analysis" button on Instagram, the Extension executes authorized operations on your client side:
+                <ul>
+                    <li>Automatically smooth-scrolls the current page to read and collect publicly displayed influencer profile links.</li>
+                    <li>Navigates to corresponding public influencer profile pages based on your selected list to parse publicly displayed data (e.g., public follower count, bio, similar recommendations) and public API response data (e.g., engagement rate data returned by /graphql/query).</li>
+                </ul>
+                This data comes entirely from publicly accessible content on Instagram pages and is used solely to generate aggregated analytical reports and exportable spreadsheets. The Extension will never read your Instagram password, private DMs, or any non-public private data.
+            </li>
+            <li><strong>Local Storage:</strong> This Extension uses <code>chrome.storage.local</code> to temporarily store login status, current analysis progress, and configuration rules locally in your browser. This data resides entirely on your local device.</li>
+        </ul>
+
+        <h2>2. User Control & Automation Notice</h2>
+        <div class="notice-box">
+            <p><strong>Fully Transparent & Controllable Automation:</strong></p>
+            <ul>
+                <li><strong>User-Initiated Trigger:</strong> All page scrolling, link extraction, and automatic profile navigation parsing are strictly initiated ONLY after the user manually clicks the "Start Analysis" button. The extension will never run silently in the background or scrape data without authorization.</li>
+                <li><strong>Real-Time Awareness & Interruption:</strong> The sidebar interface displays a real-time progress dashboard (e.g., "Analyzing 3/20..."). Users can click the <strong>"Stop Analysis"</strong> button at any time to immediately terminate all automated navigation and data parsing requests (the first click stops collection, and the second click stops analysis).</li>
+            </ul>
+        </div>
+
+        <h2>3. Data Non-Sharing & Non-Resale Statement (Google User Data Compliance)</h2>
+        <p>We strictly pledge:</p>
+        <ul>
+            <li>We <strong>NEVER</strong> use any user data obtained through Google OAuth (such as email, identity identifiers) for advertising targeting, user profile reselling, or any commercial purpose unrelated to the core function of the extension.</li>
+            <li>We <strong>NEVER sell</strong>, rent, or transfer your personal information or collected public analysis data to any third party.</li>
+            <li>Data is processed internally only to complete the "Influencer Analysis" task initiated by you and to verify service authorization.</li>
+        </ul>
+
+        <h2>4. Permissions Justification</h2>
+        <ul>
+            <li><code>storage</code>: Used to save local configurations, login tokens, and analysis progress, preventing state loss upon browser restarts.</li>
+            <li><code>identity</code>: Strictly used to initiate the official Google OAuth sign-in flow for account authentication.</li>
+            <li><code>alarms</code>: Used to handle periodic background tasks and sync task status to prevent unexpected session timeouts.</li>
+            <li><code>sidePanel</code>: Used to display the primary operational UI, real-time analytics dashboard, and insights within the Chrome sidebar.</li>
+            <li><code>host_permissions (https://www.instagram.com/*)</code>: Required for <code>chrome.tabs.query</code> and <code>chrome.tabs.onUpdated</code> to listen for tab loading completion (<code>status === 'complete'</code>) and inspect active tab URLs (e.g., /username/, /reels/, /tagged/) for pre-analysis page validity checks. Without this permission, Chrome redacts <code>tab.url</code> as <code>undefined</code>, causing page validation to fail. All non-Instagram tabs and browsing history remain completely unread and untouched.</li>
+            <li><code>host_permissions (https://pathofnow.cn/*)</code>: Required to connect to our backend API server to validate user Google authentication tokens, retrieve authorization status, and fetch up-to-date analysis configuration rules.</li>
+        </ul>
+
+        <h2>5. Data Security</h2>
+        <p>We employ industry-standard encrypted transmission protocols (HTTPS/SSL) when transmitting data to our backend servers (pathofnow.cn). We implement strict security measures to protect your personal data from unauthorized access, disclosure, or alteration.</p>
+
+        <h2>6. User Rights & Data Deletion</h2>
+        <p>You reserve the right to manage or delete your data at any time:</p>
+        <ul>
+            <li>You can click the "Stop" button on the interface at any time to interrupt any ongoing automatic parsing tasks.</li>
+            <li>You can uninstall this extension at any time via the Chrome Extension Management page. Upon uninstallation, all data stored locally by the extension will be automatically deleted.</li>
+            <li>To delete account records saved on our server, please contact us via email (451261884@qq.com).</li>
+        </ul>
+
+        <h2>7. Updates to Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time based on business developments or regulatory requirements. Any revisions will be posted on this page. Continued use of the extension after changes indicates your acceptance of the updated Privacy Policy.</p>
+
+        <h2>8. Contact Us</h2>
+        <p>If you have any questions or suggestions regarding this Privacy Policy, please contact us via:</p>
+        <ul>
+            <li>Official Website: https://pathofnow.cn/</li>
+            <li>Contact Email: 451261884@qq.com</li>
+            <li>WeChat Support: pathofnow</li>
+        </ul>
+    </div>
+
+    <!-- ==================== 中文内容 ==================== -->
+    <div class="lang-zh">
+        <h1>隐私政策 (Privacy Policy)</h1>
+        <p>更新日期：2026年7月28日</p>
+        <p>生效日期：2026年7月28日</p>
+
+        <p>欢迎使用“Instagram 红人分析助手”（以下简称“本插件”）。本插件由 PathOfNow（以下简称“我们”）开发与运营。我们非常重视您的隐私，并致力于保护您的个人信息。本隐私政策旨在向您说明我们如何收集、使用、存储和保护您的相关信息。</p>
+
+        <h2>1. 信息收集与使用 (Data Collection & Usage)</h2>
+        <p>为了向您提供红人分析及数据聚合服务，本插件仅在您明确触发的前提下，收集和处理执行功能所必需的数据：</p>
+        <ul>
+            <li><strong>个人身份信息（Personal Identification Information）：</strong> 当您使用谷歌账号登录本插件时，我们通过 <code>chrome.identity</code> 获取您的公开 Profile 信息（如 Google User ID、Email）。这些信息仅用于身份验证、用户授权状态核销以及账户识别。我们绝对不会访问或保存您的谷歌密码。</li>
+            <li><strong>网站内容与 Instagram 公开数据（Website Content & Instagram Public Data）：</strong> 当您在 Instagram 网页上主动点击“开始分析”按钮后，本插件将在您的客户端进行授权操作：
+                <ul>
+                    <li>自动平滑滚动当前页面以读取并收集公开展示的红人主页链接。</li>
+                    <li>依据您选择的分析列表，依次跳转导航至对应的公开红人主页，解析公开展示的数据（如公开粉丝数、个人简介、相似推荐等）和相关公开 API 响应数据（如 /graphql/query 返回的互动率数据）。</li>
+                </ul>
+                这些数据完全来自于 Instagram 页面公开展示的内容，用于生成聚合分析报表与导出表格。本插件绝对不会读取您的 Instagram 密码、个人私信或任何非公开隐私。
+            </li>
+            <li><strong>本地存储数据（Local Storage）：</strong> 本插件使用 <code>chrome.storage.local</code> 在您的本地浏览器中暂存登录状态、当前分析进度及配置规则。这些数据存储在您的本机设备中。</li>
+        </ul>
+
+        <h2>2. 用户控制与自动化机制说明 (User Control & Automation Notice)</h2>
+        <div class="notice-box">
+            <p><strong>完全透明与可控的自动化流程：</strong></p>
+            <ul>
+                <li><strong>用户主动触发：</strong> 所有页面滚动、链接提取和红人主页自动跳转解析过程，均完全由用户主动点击“开始分析”按钮后才会启动。插件绝不会在后台静默运行或在未经授权时自动抓取。</li>
+                <li><strong>实时感知与随时中断：</strong> 插件侧边栏界面会实时展示当前分析进度仪表盘（如“正在分析 3/20...”）。用户可随时点击界面上的 <strong>“停止分析”</strong> 按钮，立即终止所有自动化导航与数据解析请求(第一次点击停止按钮表示停止收集，第二次点击停止按钮表示停止分析)。</li>
+            </ul>
+        </div>
+
+        <h2>3. 数据不共享与不转售声明（Google 用户数据合规）</h2>
+        <p>我们郑重承诺：</p>
+        <ul>
+            <li>我们<strong>绝不将</strong>通过 Google OAuth 获得的任何用户数据（如邮箱、身份标识）用于广告投放、用户画像转售或任何与插件核心功能无关的商业目的。</li>
+            <li>我们<strong>绝不出售</strong>、出租或转让您的个人信息及收集的公开分析数据给任何第三方。</li>
+            <li>数据仅在完成您发起的“红人分析”任务以及验证服务授权时进行内部处理。</li>
+        </ul>
+
+        <h2>4. 权限使用说明 (Permissions Justification)</h2>
+        <ul>
+            <li><code>storage</code>：用于在本地保存配置、登录 Token 和分析进度，避免浏览器重启后丢失状态。</li>
+            <li><code>identity</code>：仅用于启动 Google 官方 OAuth 登录流程以完成用户身份验证。</li>
+            <li><code>alarms</code>：用于定期处理后台任务并同步分析状态，防止浏览器掉线或会话超时。</li>
+            <li><code>sidePanel</code>：用于在 Chrome 侧边栏展示核心操作界面、实时数据仪表盘与分析结果。</li>
+            <li><code>host_permissions (https://www.instagram.com/*)</code>：必须用于通过 <code>chrome.tabs.query</code> 及 <code>chrome.tabs.onUpdated</code> 监听活动标签页的加载完成状态（<code>status === 'complete'</code>）并读取当前 URL（如 /username/、/reels/、/tagged/），以进行启动分析前的前置页面合法性校验。如无此权限，Chrome 会将 <code>tab.url</code> 静默擦除为 <code>undefined</code> 导致检测失败。绝不读取或触碰任何非 Instagram 标签页及浏览历史。</li>
+            <li><code>host_permissions (https://pathofnow.cn/*)</code>：用于连接我们的后端 API 服务器，以验证用户 Google 身份 Token、检索授权状态并获取最新的分析配置规则。</li>
+        </ul>
+
+        <h2>5. 数据安全性</h2>
+        <p>我们采用行业标准的加密传输协议（HTTPS/SSL）将数据传输至我们的后端服务器（pathofnow.cn）。我们实施严格的安全防范措施，防止您的个人数据遭受未经授权的访问、泄露或篡改。</p>
+
+        <h2>6. 用户权利与数据注销</h2>
+        <p>您有权随时管理或删除您的数据：</p>
+        <ul>
+            <li>您可以随时点击界面上的“停止按钮”中断任何正在进行的自动解析任务。</li>
+            <li>您可以在 Chrome 浏览器的扩展程序管理页面随时卸载本插件。卸载后，插件本地存储的所有数据将被自动删除。</li>
+            <li>如需删除保存在我们服务器上的账号记录，请联系我们（邮箱：451261884@qq.com）。</li>
+        </ul>
+
+        <h2>7. 隐私政策更新</h2>
+        <p>我们可能会根据业务发展或法律法规要求不定期更新本隐私政策。任何修订将在本页面公示，变更后继续使用本插件即代表您同意最新的隐私政策内容。</p>
+
+        <h2>8. 联系我们</h2>
+        <p>如果您对本隐私政策有任何疑问或改进建议，请通过以下方式与我们联系：</p>
+        <ul>
+            <li>官方网站：https://pathofnow.cn/</li>
+            <li>联系邮箱：451261884@qq.com</li>
+            <li>微信支持：pathofnow</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>© 2026 PathOfNow. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 设置网页语言状态
+        function setLanguage(lang) {
+            const body = document.body;
+            const btn = document.getElementById('langBtn');
+            
+            if (lang === 'zh') {
+                body.className = 'show-zh';
+                btn.innerText = 'English';
+                document.documentElement.lang = 'zh-CN';
+            } else {
+                body.className = 'show-en';
+                btn.innerText = '中文';
+                document.documentElement.lang = 'en';
+            }
+        }
+
+        // 按钮点击手动切换
+        function toggleLanguage() {
+            const isZh = document.body.classList.contains('show-zh');
+            setLanguage(isZh ? 'en' : 'zh');
+        }
+
+        // 页面加载时自动感知浏览器语言
+        (function autoDetectLanguage() {
+            // 获取浏览器语言偏好 (如 "zh-CN", "zh", "en-US")
+            const userLang = navigator.language || navigator.userLanguage || '';
+            
+            if (userLang.toLowerCase().startsWith('zh')) {
+                setLanguage('zh'); // 中文环境默认加载中文
+            } else {
+                setLanguage('en'); // 其他环境（包括海外审核员）默认加载英文
+            }
+        })();
+    </script>
+</body>
+
+</html>
