@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作手册 - Instagram 红人分析助手</title>
+    <meta name="description" content="Instagram 红人分析助手操作手册，详细介绍插件的使用方法和功能说明">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/images/logo.png" alt="Logo" class="logo-icon">
+                <span class="logo-text">PathOfNow</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#features">功能特性</a></li>
+                <li><a href="index.html#demo">使用演示</a></li>
+                <li><a href="index.html#install">安装指南</a></li>
+                <li><a href="index.html#faq">常见问题</a></li>
+                <li><a href="manual.html">操作手册</a></li>
+                <li><a href="privacy.html" target="_blank">隐私政策</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="index.html#download" class="btn btn-primary">立即下载</a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="manual-hero">
+        <div class="manual-hero-container">
+            <h1 class="manual-title">操作手册</h1>
+            <p class="manual-subtitle">详细了解 Instagram 红人分析助手的使用方法和各项功能</p>
+        </div>
+    </section>
+
+    <section class="manual-content">
+        <div class="manual-container">
+            <div class="manual-sidebar">
+                <h3>目录导航</h3>
+                <ul class="sidebar-links">
+                    <li><a href="#intro">插件介绍</a></li>
+                    <li><a href="#quick-start">快速开始</a></li>
+                    <li><a href="#license">登录授权</a></li>
+                    <li><a href="#tab-tagged">寻找红人 Tab</a></li>
+                    <li><a href="#tab-reels">红人画像 Tab</a></li>
+                    <li><a href="#tab-similar">相似红人 Tab</a></li>
+                    <li><a href="#export">数据导出</a></li>
+                    <li><a href="#tips">使用技巧</a></li>
+                </ul>
+            </div>
+            <div class="manual-main">
+                <div id="intro" class="manual-section">
+                    <h2>插件介绍</h2>
+                    <p>Instagram 红人分析助手是一款专为品牌营销人员设计的浏览器插件，帮助用户在 Instagram 平台上高效发现和分析红人资源。</p>
+                    <p>插件提供三大核心功能模块：</p>
+                    <ul>
+                        <li><strong>寻找红人</strong>：在 Tagged 页面批量发现合作过的红人账号</li>
+                        <li><strong>红人画像</strong>：深入分析红人账号的粉丝数、播放量等关键数据</li>
+                        <li><strong>相似红人</strong>：基于目标红人推荐同类型创作者</li>
+                    </ul>
+                </div>
+
+                <div id="quick-start" class="manual-section">
+                    <h2>快速开始</h2>
+                    <div class="manual-step">
+                        <h4>第一步：安装插件</h4>
+                        <p><a href="index.html#install">安装指南</a></p>
+                    </div>
+                    <div class="manual-step">
+                        <h4>第二步：登录授权</h4>
+                        <p>点击浏览器工具栏中的插件图标，在弹出窗口中点击"使用谷歌账户登录"，登录后即可试用。</p>
+                    </div>
+                    <div class="manual-step">
+                        <h4>第三步：开始分析</h4>
+                        <p>打开 Instagram 网站，进入目标页面（Tagged 页面或用户主页），在插件窗口中选择对应的 Tab，点击"开始分析"按钮。</p>
+                    </div>
+                </div>
+
+                <div id="license" class="manual-section">
+                    <h2>登录授权</h2>
+                    <p>插件顶部区域提供登录和授权管理功能：</p>
+                    <div class="feature-detail">
+                        <h3>🔹 使用谷歌账户登录</h3>
+                        <p>点击此按钮使用谷歌账户登录插件，登录后会显示账户信息（头像、名称、邮箱）。</p>
+                    </div>
+                    <div class="feature-detail">
+                        <h3>🔹 授权状态显示</h3>
+                        <p>登录后显示授权状态：</p>
+                        <ul>
+                            <li><strong>未授权</strong>：尚未输入有效授权码</li>
+                            <li><strong>已授权</strong>：授权码有效，显示到期日期</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail">
+                        <h3>🔹 授权码核销</h3>
+                        <p>点击此按钮弹出输入框，输入购买的授权码完成验证。</p>
+                    </div>
+                    <div class="feature-detail">
+                        <h3>🔹 购买授权码</h3>
+                        <p>点击此按钮跳转到购买页面，获取插件使用授权码。</p>
+                    </div>
+                    <div class="feature-detail">
+                        <h3>🔹 帮助</h3>
+                        <p>点击此按钮显示帮助菜单，包含操作手册链接和联系我们信息。</p>
+                    </div>
+                </div>
+
+                <div id="tab-tagged" class="manual-section">
+                    <h2>寻找红人 Tab</h2>
+                    <p>此 Tab 用于在 Instagram Tagged 页面分析合作账号，批量收集和分析品牌被标记的帖子作者。</p>
+                    <div class="feature-detail">
+                        <h3>功能说明</h3>
+                        <p>当您在 Instagram 上访问某个账号的 Tagged 页面（如 https://www.instagram.com/xxx/tagged/）时，此功能可以：</p>
+                        <ul>
+                            <li>自动滚动页面收集所有 Tagged 帖子</li>
+                            <li>逐个打开帖子提取作者信息</li>
+                            <li>分析每个作者的账号数据</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail">
+                        <h3>统计指标</h3>
+                        <ul>
+                            <li><strong>待分析</strong>：已收集但尚未分析的帖子数量</li>
+                            <li><strong>已分析</strong>：已完成分析的帖子数量</li>
+                            <li><strong>成功</strong>：分析成功的帖子数量</li>
+                            <li><strong>失败</strong>：分析失败的帖子数量</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail">
+                        <h3>按钮说明</h3>
+                        <ul>
+                            <li><strong>开始分析</strong>：启动 Tagged 分析流程，自动滚动收集并分析帖子</li>
+                            <li><strong>停止</strong>：第一次点击停止，将停止页面滚动收集并开始分析，第二次点击停止,将停止整个分析过程</li>
+                            <li><strong>导出 Excel</strong>：将分析结果导出为 Excel 文件</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail">
+                        <h3>使用步骤</h3>
+                        <ol>
+                            <li>打开 Instagram，进入目标账号的 Tagged 页面</li>
+                            <li>点击插件图标，确保显示"已识别 Tagged 页面"</li>
+                            <li>点击"开始分析"按钮</li>
+                            <li>等待分析完成，查看统计数据和日志</li>
+                            <li>点击"导出 Excel"保存结果</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div id="tab-reels" class="manual-section">
+                    <h2>红人画像 Tab</h2>
+                    <p>此 Tab 用于深入分析单个红人账号的详细数据，获取粉丝数、播放量、互动率等关键指标。</p>
+                    <div class="feature-detail">
+                        <h3>功能说明</h3>
+                        <p>当您在 Instagram 上访问某个用户主页时，此功能可以：</p>
+                        <ul>
+                            <li>提取该用户的粉丝数量</li>
+                            <li>分析其 Reels 视频的平均播放数</li>
+                            <li>分析平均评论数和平均点赞数</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail">
+                        <h3>统计指标</h3>
+                        <ul>
+                            <li><strong>粉丝数</strong>：该用户的总粉丝数量</li>
+                            <li><strong>平均播放数</strong>：所有 Reels 视频的平均播放量</li>
+                            <li><strong>平均评论数</strong>：所有 Reels 视频的平均评论数</li>
+                            <li><strong>平均点赞数</strong>：所有 Reels 视频的平均点赞数</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail">
+                        <h3>按钮说明</h3>
+                        <ul>
+                            <li><strong>开始分析</strong>：启动红人画像分析，加载 Reels 数据</li>
+                            <li><strong>停止</strong>：停止当前正在进行的分析任务</li>
+                            <li><strong>导出 Excel</strong>：将分析结果导出为 Excel 文件</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail">
+                        <h3>使用步骤</h3>
+                        <ol>
+                            <li>打开 Instagram，进入目标红人主页</li>
+                            <li>点击页面上的 Reels 图标，触发数据加载</li>
+                            <li>点击插件图标，确保显示"已识别用户主页"</li>
+                            <li>点击"开始分析"按钮</li>
+                            <li>等待分析完成，查看统计数据</li>
+                            <li>点击"导出 Excel"保存结果</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div id="tab-similar" class="manual-section">
+                    <h2>相似红人 Tab</h2>
+                    <p>此 Tab 用于基于目标红人推荐同类型的创作者，帮助品牌拓展合作资源。</p>
+                    <div class="feature-detail">
+                        <h3>功能说明</h3>
+                        <p>当您在 Instagram 上访问某个用户主页时，此功能可以：</p>
+                        <ul>
+                            <li>收集该用户的相似账号推荐</li>
+                            <li>逐个分析相似账号的数据</li>
+                            <li>发现同类型的优质创作者</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail">
+                        <h3>统计指标</h3>
+                        <ul>
+                            <li><strong>待分析</strong>：已发现但尚未分析的相似账号数量</li>
+                            <li><strong>已分析</strong>：已完成分析的相似账号数量</li>
+                            <li><strong>成功</strong>：分析成功的相似账号数量</li>
+                            <li><strong>失败</strong>：分析失败的相似账号数量</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail">
+                        <h3>按钮说明</h3>
+                        <ul>
+                            <li><strong>开始分析</strong>：启动相似红人分析，收集并分析相似账号</li>
+                            <li><strong>停止</strong>：第一次点击停止，将停止页面滚动并开始分析，第二次点击停止,将完成整个分析过程</li>
+                            <li><strong>导出 Excel</strong>：将分析结果导出为 Excel 文件</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail">
+                        <h3>使用步骤</h3>
+                        <ol>
+                            <li>打开 Instagram，进入目标红人主页</li>
+                            <li>点击插件图标，确保显示"已识别用户主页"</li>
+                            <li>点击"开始分析"按钮</li>
+                            <li>等待分析完成，查看统计数据和日志</li>
+                            <li>点击"导出 Excel"保存结果</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div id="export" class="manual-section">
+                    <h2>数据导出</h2>
+                    <p>所有分析结果都可以导出为 Excel 文件，方便进行后续处理和团队协作。</p>
+                    <div class="feature-detail">
+                        <h3>导出内容</h3>
+                        <ul>
+                            <li>账号用户名和主页链接</li>
+                            <li>粉丝数量</li>
+                            <li>平均播放数、评论数、点赞数</li>
+                            <li>分析时间和状态</li>
+                        </ul>
+                    </div>
+                    <div class="feature-detail">
+                        <h3>注意事项</h3>
+                        <ul>
+                            <li>导出按钮仅在分析完成后可用</li>
+                            <li>建议定期导出数据，避免浏览器缓存丢失</li>
+                            <li>导出的 Excel 文件使用 UTF-8 编码，支持中文显示</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="tips" class="manual-section">
+                    <h2>使用技巧</h2>
+                    <ul class="tips-list">
+                        <li>分析前请确保已登录 Instagram 账号，否则可能无法获取完整数据</li>
+                        <li>Tagged 页面分析时，请耐心等待页面滚动收集完成</li>
+                        <li>红人画像分析需要先点击 Reels 图标加载视频数据</li>
+                        <li>分析过程中请保持 Instagram 页面在前台，避免浏览器限制后台操作</li>
+                        <li>如果分析失败，请查看日志窗口获取详细错误信息</li>
+                        <li>定期清理浏览器缓存可以提高插件稳定性</li>
+                        <li>授权码过期前会有提示，请及时续费</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/logo.png" alt="Logo" class="logo-icon">
+                    <span class="logo-text">PathOfNow</span>
+                </div>
+                <p class="footer-description">一键寻找红人 · 生成红人画像 · 推荐相似红人</p>
+                <div class="footer-links">
+                    <a href="index.html#features">功能特性</a>
+                    <a href="index.html#demo">使用演示</a>
+                    <a href="index.html#install">安装指南</a>
+                    <a href="index.html#faq">常见问题</a>
+                    <a href="manual.html">操作手册</a>
+                    <a href="privacy.html" target="_blank">隐私政策</a>
+                </div>
+                 <div class="footer-social">
+                    <a href="https://github.com/PathOfNow/Influencer-Analysis-chrome-extension" target="_blank" class="social-icon">GitHub</a>
+                    <span class="social-icon">微信: pathofnow</span>
+                    <span class="social-icon">邮箱: 451261884@qq.com</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 PathOfNow. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/manual.js"></script>
+</body>
+</html>
