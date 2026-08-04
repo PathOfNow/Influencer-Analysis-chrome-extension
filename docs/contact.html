@@ -10,16 +10,64 @@
     <link rel="icon" type="image/png" href="assets/images/logo.png">
     <style>
         .contact-hero {
-            padding: 120px 0 60px;
+            padding: 140px 0 80px;
             background: linear-gradient(135deg, #f0fdf4 0%, #e0e7ff 50%, #faf5ff 100%);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .contact-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .contact-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .contact-hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .contact-hero p {
@@ -27,6 +75,7 @@
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
+            line-height: 1.7;
         }
 
         .contact-section {
@@ -48,135 +97,353 @@
         }
 
         .contact-card {
+            position: relative;
             background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow-md);
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
             border: 1px solid var(--border-color);
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
 
         .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--primary-color);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: transparent;
+        }
+
+        .contact-card:hover::before {
+            transform: scaleX(1);
         }
 
         .contact-card-icon {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 50%;
+            border-radius: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
-            font-size: 2rem;
+            font-size: 2.25rem;
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover .contact-card-icon {
+            transform: scale(1.1) rotate(-5deg);
         }
 
         .contact-card h3 {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
-        .contact-card p {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
+        .contact-card .card-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 1.25rem;
         }
 
-        .contact-card a {
+        .contact-card .email-value {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             color: var(--primary-color);
             text-decoration: none;
-            font-weight: 600;
-            transition: color 0.2s;
+            font-weight: 700;
+            font-size: 1.125rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
+            border-radius: 12px;
+            transition: all 0.3s;
+            word-break: break-all;
         }
 
-        .contact-card a:hover {
-            color: var(--primary-dark);
-            text-decoration: underline;
+        .contact-card .email-value:hover {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+            transform: scale(1.02);
         }
 
         .qr-section {
-            background: var(--bg-secondary);
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, #f8f9fc 100%);
             padding: 80px 0;
         }
 
         .qr-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
             text-align: center;
         }
 
+        .qr-section-header {
+            margin-bottom: 3rem;
+        }
+
         .qr-title {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.25rem;
+            font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .qr-description {
             font-size: 1.125rem;
             color: var(--text-secondary);
-            margin-bottom: 2.5rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .contact-method-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-method-card:hover {
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .contact-method-card .card-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.375rem 0.875rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            align-self: flex-start;
+        }
+
+        .card-badge.wechat {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+
+        .card-badge.email {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary-color);
+        }
+
+        .contact-method-card h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-method-card .card-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .qr-image-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
         }
 
         .qr-code-wrapper {
-            display: inline-block;
             background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow-lg);
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px -5px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--border-color);
+            transition: box-shadow 0.3s;
+        }
+
+        .qr-code-wrapper:hover {
+            box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.15);
         }
 
         .qr-code-wrapper img {
-            width: 280px;
-            height: 280px;
+            width: 240px;
+            height: 240px;
             display: block;
-            border-radius: 8px;
+            border-radius: 12px;
+            object-fit: contain;
         }
 
-        .qr-tip {
-            margin-top: 1.5rem;
+        .qr-contact-id {
             font-size: 1rem;
-            color: var(--text-secondary);
+            font-weight: 700;
+            color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
+            padding: 0.625rem 1.25rem;
+            border-radius: 12px;
+            display: inline-block;
         }
 
-        .contact-footer {
-            margin-top: 3rem;
-            padding: 2rem;
-            background: var(--bg-secondary);
-            border-radius: 16px;
-            text-align: center;
+        .qr-steps {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        .contact-footer h4 {
-            font-size: 1.125rem;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-footer p {
+        .qr-steps li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
             color: var(--text-secondary);
             font-size: 0.95rem;
         }
 
+        .qr-steps li .step-num {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .email-card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .email-value-lg {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.625rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.25rem;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
+            border-radius: 14px;
+            transition: all 0.3s;
+            word-break: break-all;
+            margin-bottom: 1.5rem;
+        }
+
+        .email-value-lg:hover {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+            transform: scale(1.02);
+        }
+
+        .email-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .email-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            padding: 0.375rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .email-features li::before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .info-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+
+        .info-item-icon {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .info-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
         @media (max-width: 768px) {
-            .contact-hero h1 {
-                font-size: 2rem;
+            .contact-hero {
+                padding: 120px 0 60px;
             }
 
-            .contact-cards {
+            .contact-hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .contact-grid {
                 grid-template-columns: 1fr;
             }
 
             .qr-code-wrapper img {
                 width: 220px;
                 height: 220px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -211,43 +478,76 @@
 
     <section class="contact-hero">
         <div class="container">
+            <div class="contact-hero-badge">
+                <span>💬</span>
+                <span>我们随时为您服务</span>
+            </div>
             <h1>联系我们</h1>
             <p>有任何问题、建议或合作需求？欢迎通过以下方式联系我们，我们会尽快回复您。</p>
         </div>
     </section>
 
-    <section class="contact-section">
-        <div class="contact-container">
-            <div class="contact-cards">
-                <div class="contact-card">
-                    <div class="contact-card-icon">📧</div>
-                    <h3>邮箱联系</h3>
-                    <p>技术支持、商务合作</p>
-                    <p><a href="mailto:451261884@qq.com">451261884@qq.com</a></p>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-card-icon">💬</div>
-                    <h3>微信联系</h3>
-                    <p>客服微信：pathofnow</p>
-                    <p>扫描下方二维码添加</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="qr-section">
         <div class="qr-container">
-            <h2 class="qr-title">微信扫码联系</h2>
-            <p class="qr-description">使用微信扫描下方二维码，添加我们为好友，获取即时帮助</p>
-            <div class="qr-code-wrapper">
-                <img src="assets/images/wechat-qr.png" alt="微信二维码">
+            <div class="qr-section-header">
+                <h2 class="qr-title">联系我们</h2>
+                <p class="qr-description">选择您喜欢的方式，随时与我们取得联系</p>
             </div>
-            <p class="qr-tip">👆 扫一扫，添加 pathofnow 为好友</p>
 
-            <div class="contact-footer">
-                <h4>工作时间</h4>
-                <p>周一至周五 9:00 - 18:00</p>
-                <p>我们会在 24 小时内回复您的消息</p>
+            <div class="contact-grid">
+                <div class="contact-method-card">
+                    <div class="card-badge wechat">💬 微信联系</div>
+                    <h3>扫码添加好友</h3>
+                    <p class="card-desc">即时沟通，快速响应，添加微信即可立即开始对话。</p>
+                    <div class="qr-image-area">
+                        <div class="qr-code-wrapper">
+                            <img src="assets/images/wechat-qr.png" alt="PathOfNow 微信二维码">
+                        </div>
+                        <div class="qr-contact-id">微信号：pathofnow</div>
+                    </div>
+                    <ul class="qr-steps" style="margin-top: 1.5rem;">
+                        <li><span class="step-num">1</span> 打开微信，点击右上角「+」</li>
+                        <li><span class="step-num">2</span> 选择「扫一扫」功能</li>
+                        <li><span class="step-num">3</span> 扫描上方二维码</li>
+                        <li><span class="step-num">4</span> 发送「你好」即可开始对话</li>
+                    </ul>
+                </div>
+
+                <div class="contact-method-card">
+                    <div class="card-badge email">📧 邮箱联系</div>
+                    <h3>发送邮件</h3>
+                    <p class="card-desc">适合详细咨询、商务合作、授权申请等正式沟通场景。</p>
+                    <div class="email-card-content">
+                        <a href="mailto:451261884@qq.com" class="email-value-lg">
+                            <span>✉️</span>
+                            <span>451261884@qq.com</span>
+                        </a>
+                        <ul class="email-features">
+                            <li>技术支持 · 快速解答</li>
+                            <li>商务合作 · 详细沟通</li>
+                            <li>授权咨询 · 专业服务</li>
+                            <li>24 小时内回复</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-grid" style="max-width: 900px; margin-left: auto; margin-right: auto;">
+                <div class="info-item">
+                    <div class="info-item-icon">⏰</div>
+                    <h4>工作时间</h4>
+                    <p>周一至周五<br>9:00 - 18:00</p>
+                </div>
+                <div class="info-item">
+                    <div class="info-item-icon">⚡</div>
+                    <h4>响应时效</h4>
+                    <p>微信即时回复<br>邮件 24 小时内</p>
+                </div>
+                <div class="info-item">
+                    <div class="info-item-icon">🎯</div>
+                    <h4>服务范围</h4>
+                    <p>技术支持<br>商务合作</p>
+                </div>
             </div>
         </div>
     </section>
