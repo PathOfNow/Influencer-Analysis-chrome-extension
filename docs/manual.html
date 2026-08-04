@@ -3,305 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>操作手册 - Instagram 红人分析助手</title>
-    <meta name="description" content="Instagram 红人分析助手操作手册，详细介绍插件的使用方法和功能说明">
-    <link rel="stylesheet" href="css/style.css">
+    <title>Instagram 红人分析助手操作文档</title>
+    <style>
+        /* 全局重置与布局 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #f6f8fa; color: #24292e; display: flex; height: 100vh; overflow: hidden; }
+
+        /* 左侧导航栏 */
+        .sidebar { width: 300px; background-color: #ffffff; border-right: 1px solid #e1e4e8; overflow-y: auto; padding: 20px 0; flex-shrink: 0; display: flex; flex-direction: column; }
+        .sidebar-header { padding: 0 20px 20px 20px; border-bottom: 1px solid #e1e4e8; margin-bottom: 15px; }
+        .sidebar-header h2 { font-size: 18px; color: #24292e; font-weight: 600; }
+        .sidebar-nav { flex: 1; overflow-y: auto; padding: 0 10px; }
+        .sidebar-nav ul { list-style: none; padding-left: 0; }
+        .sidebar-nav li { margin-bottom: 2px; }
+        .sidebar-nav a { display: block; padding: 6px 12px; border-radius: 6px; color: #57606a; text-decoration: none; font-size: 14px; transition: all 0.2s; line-height: 1.5; }
+        .sidebar-nav a:hover { background-color: #f3f4f6; color: #24292e; }
+
+        /* 层级样式：一级菜单加粗，二级菜单缩进并细化 */
+        .sidebar-nav .level-1 { padding-left: 12px; font-weight: 600; color: #24292e; }
+        .sidebar-nav .level-2 { padding-left: 28px; font-weight: 400; font-size: 13px; }
+        .sidebar-nav .submenu { padding-left: 0; margin-top: 2px; margin-bottom: 4px; }
+
+        /* 右侧正文区 */
+        .content { flex: 1; overflow-y: auto; padding: 40px 60px; background-color: #ffffff; max-width: 900px; margin: 20px auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); height: calc(100vh - 40px); }
+
+        /* 正文排版样式 */
+        .content h1 { font-size: 32px; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; margin-bottom: 16px; margin-top: 0; font-weight: 600; }
+        .content h2 { font-size: 24px; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; margin-top: 24px; margin-bottom: 16px; font-weight: 600; }
+        .content h3 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; font-weight: 600; }
+        .content p { margin-bottom: 16px; line-height: 1.7; font-size: 15px; }
+        .content blockquote { padding: 0 16px; margin: 0 0 16px 0; border-left: 4px solid #d0d7de; color: #57606a; background-color: #f6f8fa; padding: 12px 16px; border-radius: 4px; }
+        .content ul, .content ol { padding-left: 24px; margin-bottom: 16px; line-height: 1.7; }
+        .content table { border-collapse: collapse; width: 100%; margin-bottom: 16px; border: 1px solid #d0d7de; }
+        .content th, .content td { border: 1px solid #d0d7de; padding: 8px 12px; text-align: left; }
+        .content th { background-color: #f6f8fa; font-weight: 600; }
+        .content code { padding: 0.2em 0.4em; margin: 0; font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 85%; background-color: #f6f8fa; border-radius: 6px; color: #24292e; }
+        .content pre { background-color: #f6f8fa; padding: 16px; border-radius: 6px; overflow: auto; margin-bottom: 16px; }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            body { flex-direction: column; height: auto; overflow: auto; }
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #e1e4e8; padding: 15px; max-height: 250px; }
+            .content { padding: 20px; margin: 0; height: auto; border-radius: 0; box-shadow: none; }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="assets/images/logo.png" alt="Logo" class="logo-icon">
-                <span class="logo-text">PathOfNow</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html#features">功能特性</a></li>
-                <li><a href="index.html#demo">使用演示</a></li>
-                <li><a href="index.html#install">安装指南</a></li>
-                <li><a href="index.html#faq">常见问题</a></li>
-                <li><a href="manual.html">操作手册</a></li>
-                <li><a href="privacy.html" target="_blank">隐私政策</a></li>
+
+<!-- 左侧导航栏：已补充全文档所有二级标题 -->
+<nav class="sidebar">
+    <div class="sidebar-header">
+        <h2>📚 目录导航</h2>
+    </div>
+    <div class="sidebar-nav">
+        <ul>
+            <li><a href="#1-它能干什么" class="level-1">1. 它能干什么</a></li>
+
+            <li><a href="#2-安装前准备" class="level-1">2. 安装前准备</a></li>
+            <ul class="submenu">
+                <li><a href="#21-你需要准备的东西" class="level-2">2.1 准备清单</a></li>
+                <li><a href="#22-确认-chrome-已登录-instagram" class="level-2">2.2 确认已登录 IG</a></li>
             </ul>
-            <div class="nav-actions">
-                <a href="index.html#download" class="btn btn-primary">立即下载</a>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </nav>
 
-    <section class="manual-hero">
-        <div class="manual-hero-container">
-            <h1 class="manual-title">操作手册</h1>
-            <p class="manual-subtitle">详细了解 Instagram 红人分析助手的使用方法和各项功能</p>
-        </div>
-    </section>
+            <li><a href="#3-安装插件" class="level-1">3. 安装插件</a></li>
+            <ul class="submenu">
+                <li><a href="#31-打开谷歌应用商店" class="level-2">3.1 打开商店</a></li>
+                <li><a href="#32-确认安装成功" class="level-2">3.2 确认安装</a></li>
+                <li><a href="#33-把插件图标固定到工具栏推荐" class="level-2">3.3 固定到工具栏</a></li>
+                <li><a href="#34-打开侧边栏" class="level-2">3.4 打开侧边栏</a></li>
+            </ul>
 
-    <section class="manual-content">
-        <div class="manual-container">
-            <div class="manual-sidebar">
-                <h3>目录导航</h3>
-                <ul class="sidebar-links">
-                    <li><a href="#intro">插件介绍</a></li>
-                    <li><a href="#quick-start">快速开始</a></li>
-                    <li><a href="#license">登录授权</a></li>
-                    <li><a href="#tab-tagged">寻找红人 Tab</a></li>
-                    <li><a href="#tab-reels">红人画像 Tab</a></li>
-                    <li><a href="#tab-similar">相似红人 Tab</a></li>
-                    <li><a href="#export">数据导出</a></li>
-                    <li><a href="#tips">使用技巧</a></li>
-                </ul>
-            </div>
-            <div class="manual-main">
-                <div id="intro" class="manual-section">
-                    <h2>插件介绍</h2>
-                    <p>Instagram 红人分析助手是一款专为品牌营销人员设计的浏览器插件，帮助用户在 Instagram 平台上高效发现和分析红人资源。</p>
-                    <p>插件提供三大核心功能模块：</p>
-                    <ul>
-                        <li><strong>寻找红人</strong>：在 Tagged 页面批量发现合作过的红人账号</li>
-                        <li><strong>红人画像</strong>：深入分析红人账号的粉丝数、播放量等关键数据</li>
-                        <li><strong>相似红人</strong>：基于目标红人推荐同类型创作者</li>
-                    </ul>
-                </div>
+            <li><a href="#4-登录流程" class="level-1">4. 登录流程</a></li>
+            <ul class="submenu">
+                <li><a href="#41-点击登录按钮" class="level-2">4.1 点击登录按钮</a></li>
+                <li><a href="#42-完成-google-登录" class="level-2">4.2 完成 Google 登录</a></li>
+                <li><a href="#43-登录成功后的样子" class="level-2">4.3 登录成功状态</a></li>
+                <li><a href="#44-登录失败怎么办" class="level-2">4.4 登录失败怎么办</a></li>
+            </ul>
 
-                <div id="quick-start" class="manual-section">
-                    <h2>快速开始</h2>
-                    <div class="manual-step">
-                        <h4>第一步：安装插件</h4>
-                        <p><a href="index.html#install">安装指南</a></p>
-                    </div>
-                    <div class="manual-step">
-                        <h4>第二步：登录授权</h4>
-                        <p>点击浏览器工具栏中的插件图标，在弹出窗口中点击"使用谷歌账户登录"，登录后即可试用。</p>
-                    </div>
-                    <div class="manual-step">
-                        <h4>第三步：开始分析</h4>
-                        <p>打开 Instagram 网站，进入目标页面（Tagged 页面或用户主页），在插件窗口中选择对应的 Tab，点击"开始分析"按钮。</p>
-                    </div>
-                </div>
+            <li><a href="#5-购买授权码" class="level-1">5. 购买授权码</a></li>
+            <ul class="submenu">
+                <li><a href="#51-点击购买按钮" class="level-2">5.1 点击购买按钮</a></li>
+                <li><a href="#52-完成购买" class="level-2">5.2 完成购买</a></li>
+                <li><a href="#53-授权状态说明" class="level-2">5.3 授权状态说明</a></li>
+            </ul>
 
-                <div id="license" class="manual-section">
-                    <h2>登录授权</h2>
-                    <p>插件顶部区域提供登录和授权管理功能：</p>
-                    <div class="feature-detail">
-                        <h3>🔹 使用谷歌账户登录</h3>
-                        <p>点击此按钮使用谷歌账户登录插件，登录后会显示账户信息（头像、名称、邮箱）。</p>
-                    </div>
-                    <div class="feature-detail">
-                        <h3>🔹 授权状态显示</h3>
-                        <p>登录后显示授权状态：</p>
-                        <ul>
-                            <li><strong>未授权</strong>：尚未输入有效授权码</li>
-                            <li><strong>已授权</strong>：授权码有效，显示到期日期</li>
-                        </ul>
-                    </div>
-                    <div class="feature-detail">
-                        <h3>🔹 授权码核销</h3>
-                        <p>点击此按钮弹出输入框，输入购买的授权码完成验证。</p>
-                    </div>
-                    <div class="feature-detail">
-                        <h3>🔹 购买授权码</h3>
-                        <p>点击此按钮跳转到购买页面，获取插件使用授权码。</p>
-                    </div>
-                    <div class="feature-detail">
-                        <h3>🔹 帮助</h3>
-                        <p>点击此按钮显示帮助菜单，包含操作手册链接和联系我们信息。</p>
-                    </div>
-                </div>
+            <li><a href="#6-授权码核销激活" class="level-1">6. 授权码核销（激活）</a></li>
+            <ul class="submenu">
+                <li><a href="#61-点击核销按钮" class="level-2">6.1 点击核销按钮</a></li>
+                <li><a href="#62-输入授权码" class="level-2">6.2 输入授权码</a></li>
+                <li><a href="#63-确认核销" class="level-2">6.3 确认核销</a></li>
+                <li><a href="#64-核销成功后" class="level-2">6.4 核销成功后</a></li>
+            </ul>
 
-                <div id="tab-tagged" class="manual-section">
-                    <h2>寻找红人 Tab</h2>
-                    <p>此 Tab 用于在 Instagram Tagged 页面分析合作账号，批量收集和分析品牌被标记的帖子作者。</p>
-                    <div class="feature-detail">
-                        <h3>功能说明</h3>
-                        <p>当您在 Instagram 上访问某个账号的 Tagged 页面（如 https://www.instagram.com/xxx/tagged/）时，此功能可以：</p>
-                        <ul>
-                            <li>自动滚动页面收集所有 Tagged 帖子</li>
-                            <li>逐个打开帖子提取作者信息</li>
-                            <li>分析每个作者的账号数据</li>
-                        </ul>
-                    </div>
-                    <div class="feature-detail">
-                        <h3>统计指标</h3>
-                        <ul>
-                            <li><strong>待分析</strong>：已收集但尚未分析的帖子数量</li>
-                            <li><strong>已分析</strong>：已完成分析的帖子数量</li>
-                            <li><strong>成功</strong>：分析成功的帖子数量</li>
-                            <li><strong>失败</strong>：分析失败的帖子数量</li>
-                        </ul>
-                    </div>
-                    <div class="feature-detail">
-                        <h3>按钮说明</h3>
-                        <ul>
-                            <li><strong>开始分析</strong>：启动 Tagged 分析流程，自动滚动收集并分析帖子</li>
-                            <li><strong>停止</strong>：第一次点击停止，将停止页面滚动收集并开始分析，第二次点击停止,将停止整个分析过程</li>
-                            <li><strong>导出 Excel</strong>：将分析结果导出为 Excel 文件</li>
-                        </ul>
-                    </div>
-                    <div class="feature-detail">
-                        <h3>使用步骤</h3>
-                        <ol>
-                            <li>打开 Instagram，进入目标账号的 Tagged 页面</li>
-                            <li>点击插件图标，确保显示"已识别 Tagged 页面"</li>
-                            <li>点击"开始分析"按钮</li>
-                            <li>等待分析完成，查看统计数据和日志</li>
-                            <li>点击"导出 Excel"保存结果</li>
-                        </ol>
-                    </div>
-                </div>
+            <li><a href="#7-功能一寻找红人tagged" class="level-1">7. 寻找红人（Tagged）</a></li>
+            <ul class="submenu">
+                <li><a href="#71-第一步打开-tagged-页面" class="level-2">7.1 打开 Tagged 页面</a></li>
+                <li><a href="#72-第二步切换到寻找红人标签页" class="level-2">7.2 切换到标签页</a></li>
+                <li><a href="#73-第三步确认页面状态正确" class="level-2">7.3 确认页面状态</a></li>
+                <li><a href="#74-第四步点击开始分析" class="level-2">7.4 点击开始分析</a></li>
+                <li><a href="#75-第五步等待分析" class="level-2">7.5 等待分析</a></li>
+                <li><a href="#76停止分析可选" class="level-2">7.6 停止分析（可选）</a></li>
+                <li><a href="#77-统计数据说明" class="level-2">7.7 统计数据说明</a></li>
+                <li><a href="#78-分析完成" class="level-2">7.8 分析完成</a></li>
+                <li><a href="#79-导出结果" class="level-2">7.9 导出结果</a></li>
+            </ul>
 
-                <div id="tab-reels" class="manual-section">
-                    <h2>红人画像 Tab</h2>
-                    <p>此 Tab 用于深入分析单个红人账号的详细数据，获取粉丝数、播放量、互动率等关键指标。</p>
-                    <div class="feature-detail">
-                        <h3>功能说明</h3>
-                        <p>当您在 Instagram 上访问某个用户主页时，此功能可以：</p>
-                        <ul>
-                            <li>提取该用户的粉丝数量</li>
-                            <li>分析其 Reels 视频的平均播放数</li>
-                            <li>分析平均评论数和平均点赞数</li>
-                        </ul>
-                    </div>
-                    <div class="feature-detail">
-                        <h3>统计指标</h3>
-                        <ul>
-                            <li><strong>粉丝数</strong>：该用户的总粉丝数量</li>
-                            <li><strong>平均播放数</strong>：所有 Reels 视频的平均播放量</li>
-                            <li><strong>平均评论数</strong>：所有 Reels 视频的平均评论数</li>
-                            <li><strong>平均点赞数</strong>：所有 Reels 视频的平均点赞数</li>
-                        </ul>
-                    </div>
-                    <div class="feature-detail">
-                        <h3>按钮说明</h3>
-                        <ul>
-                            <li><strong>开始分析</strong>：启动红人画像分析，加载 Reels 数据</li>
-                            <li><strong>停止</strong>：停止当前正在进行的分析任务</li>
-                            <li><strong>导出 Excel</strong>：将分析结果导出为 Excel 文件</li>
-                        </ul>
-                    </div>
-                    <div class="feature-detail">
-                        <h3>使用步骤</h3>
-                        <ol>
-                            <li>打开 Instagram，进入目标红人主页</li>
-                            <li>点击页面上的 Reels 图标，触发数据加载</li>
-                            <li>点击插件图标，确保显示"已识别用户主页"</li>
-                            <li>点击"开始分析"按钮</li>
-                            <li>等待分析完成，查看统计数据</li>
-                            <li>点击"导出 Excel"保存结果</li>
-                        </ol>
-                    </div>
-                </div>
+            <li><a href="#8-功能二红人画像reels" class="level-1">8. 红人画像（Reels）</a></li>
+            <ul class="submenu">
+                <li><a href="#81-第一步打开用户主页" class="level-2">8.1 打开用户主页</a></li>
+                <li><a href="#82-第二步切换到红人画像标签页" class="level-2">8.2 切换到画像标签页</a></li>
+                <li><a href="#83-第三步确认页面状态" class="level-2">8.3 确认页面状态</a></li>
+                <li><a href="#84-第四步点击开始分析" class="level-2">8.4 点击开始分析</a></li>
+                <li><a href="#85-第五步等待分析" class="level-2">8.5 等待分析</a></li>
+                <li><a href="#86停止分析可选" class="level-2">8.6 停止分析（可选）</a></li>
+                <li><a href="#87-统计数据说明" class="level-2">8.7 统计数据说明</a></li>
+                <li><a href="#88-分析完成" class="level-2">8.8 分析完成</a></li>
+                <li><a href="#89-导出结果" class="level-2">8.9 导出结果</a></li>
+            </ul>
 
-                <div id="tab-similar" class="manual-section">
-                    <h2>相似红人 Tab</h2>
-                    <p>此 Tab 用于基于目标红人推荐同类型的创作者，帮助品牌拓展合作资源。</p>
-                    <div class="feature-detail">
-                        <h3>功能说明</h3>
-                        <p>当您在 Instagram 上访问某个用户主页时，此功能可以：</p>
-                        <ul>
-                            <li>收集该用户的相似账号推荐</li>
-                            <li>逐个分析相似账号的数据</li>
-                            <li>发现同类型的优质创作者</li>
-                        </ul>
-                    </div>
-                    <div class="feature-detail">
-                        <h3>统计指标</h3>
-                        <ul>
-                            <li><strong>待分析</strong>：已发现但尚未分析的相似账号数量</li>
-                            <li><strong>已分析</strong>：已完成分析的相似账号数量</li>
-                            <li><strong>成功</strong>：分析成功的相似账号数量</li>
-                            <li><strong>失败</strong>：分析失败的相似账号数量</li>
-                        </ul>
-                    </div>
-                    <div class="feature-detail">
-                        <h3>按钮说明</h3>
-                        <ul>
-                            <li><strong>开始分析</strong>：启动相似红人分析，收集并分析相似账号</li>
-                            <li><strong>停止</strong>：第一次点击停止，将停止页面滚动并开始分析，第二次点击停止,将完成整个分析过程</li>
-                            <li><strong>导出 Excel</strong>：将分析结果导出为 Excel 文件</li>
-                        </ul>
-                    </div>
-                    <div class="feature-detail">
-                        <h3>使用步骤</h3>
-                        <ol>
-                            <li>打开 Instagram，进入目标红人主页</li>
-                            <li>点击插件图标，确保显示"已识别用户主页"</li>
-                            <li>点击"开始分析"按钮</li>
-                            <li>等待分析完成，查看统计数据和日志</li>
-                            <li>点击"导出 Excel"保存结果</li>
-                        </ol>
-                    </div>
-                </div>
+            <li><a href="#9-功能三相似红人" class="level-1">9. 相似红人</a></li>
+            <ul class="submenu">
+                <li><a href="#91-第一步打开用户主页" class="level-2">9.1 打开用户主页</a></li>
+                <li><a href="#92-第二步切换到相似红人标签页" class="level-2">9.2 切换到相似红人标签页</a></li>
+                <li><a href="#93-第三步确认页面状态" class="level-2">9.3 确认页面状态</a></li>
+                <li><a href="#94-第四步点击开始分析" class="level-2">9.4 点击开始分析</a></li>
+                <li><a href="#95-第五步等待分析" class="level-2">9.5 等待分析</a></li>
+                <li><a href="#96停止分析可选" class="level-2">9.6 停止分析（可选）</a></li>
+                <li><a href="#97-统计数据说明" class="level-2">9.7 统计数据说明</a></li>
+                <li><a href="#98-分析完成" class="level-2">9.8 分析完成</a></li>
+                <li><a href="#99-导出结果" class="level-2">9.9 导出结果</a></li>
+            </ul>
 
-                <div id="export" class="manual-section">
-                    <h2>数据导出</h2>
-                    <p>所有分析结果都可以导出为 Excel 文件，方便进行后续处理和团队协作。</p>
-                    <div class="feature-detail">
-                        <h3>导出内容</h3>
-                        <ul>
-                            <li>账号用户名和主页链接</li>
-                            <li>粉丝数量</li>
-                            <li>平均播放数、评论数、点赞数</li>
-                            <li>分析时间和状态</li>
-                        </ul>
-                    </div>
-                    <div class="feature-detail">
-                        <h3>注意事项</h3>
-                        <ul>
-                            <li>导出按钮仅在分析完成后可用</li>
-                            <li>建议定期导出数据，避免浏览器缓存丢失</li>
-                            <li>导出的 Excel 文件使用 UTF-8 编码，支持中文显示</li>
-                        </ul>
-                    </div>
-                </div>
+            <li><a href="#10-导出数据" class="level-1">10. 导出数据</a></li>
+            <ul class="submenu">
+                <li><a href="#101-什么时候可以导出" class="level-2">10.1 导出时机</a></li>
+                <li><a href="#102-怎么导出" class="level-2">10.2 怎么导出</a></li>
+                <li><a href="#103-打开导出的文件" class="level-2">10.3 打开导出的文件</a></li>
+                <li><a href="#104-没有数据怎么办" class="level-2">10.4 没有数据怎么办</a></li>
+            </ul>
 
-                <div id="tips" class="manual-section">
-                    <h2>使用技巧</h2>
-                    <ul class="tips-list">
-                        <li>分析前请确保已登录 Instagram 账号，否则可能无法获取完整数据</li>
-                        <li>Tagged 页面分析时，请耐心等待页面滚动收集完成</li>
-                        <li>红人画像分析需要先点击 Reels 图标加载视频数据</li>
-                        <li>分析过程中请保持 Instagram 页面在前台，避免浏览器限制后台操作</li>
-                        <li>如果分析失败，请查看日志窗口获取详细错误信息</li>
-                        <li>定期清理浏览器缓存可以提高插件稳定性</li>
-                        <li>授权码过期前会有提示，请及时续费</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+            <li><a href="#11-停止任务" class="level-1">11. 停止任务</a></li>
+            <ul class="submenu">
+                <li><a href="#111-什么时候需要停止" class="level-2">11.1 什么时候停止</a></li>
+                <li><a href="#112-怎么停止" class="level-2">11.2 怎么停止</a></li>
+                <li><a href="#113-停止的两种情况" class="level-2">11.3 停止的两种情况</a></li>
+                <li><a href="#114-停止按钮防误触" class="level-2">11.4 停止按钮防误触</a></li>
+                <li><a href="#115-三个功能不能同时运行" class="level-2">11.5 功能不能同时运行</a></li>
+            </ul>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/images/logo.png" alt="Logo" class="logo-icon">
-                    <span class="logo-text">PathOfNow</span>
-                </div>
-                <p class="footer-description">一键寻找红人 · 生成红人画像 · 推荐相似红人</p>
-                <div class="footer-links">
-                    <a href="index.html#features">功能特性</a>
-                    <a href="index.html#demo">使用演示</a>
-                    <a href="index.html#install">安装指南</a>
-                    <a href="index.html#faq">常见问题</a>
-                    <a href="manual.html">操作手册</a>
-                    <a href="privacy.html" target="_blank">隐私政策</a>
-                </div>
-                 <div class="footer-social">
-                    <a href="https://github.com/PathOfNow/Influencer-Analysis-chrome-extension" target="_blank" class="social-icon">GitHub</a>
-                    <span class="social-icon">微信: pathofnow</span>
-                    <span class="social-icon">邮箱: 451261884@qq.com</span>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2026 PathOfNow. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+            <li><a href="#12-界面说明" class="level-1">12. 界面说明</a></li>
+            <ul class="submenu">
+                <li><a href="#121-顶部区域" class="level-2">12.1 顶部区域</a></li>
+                <li><a href="#122-功能标签页" class="level-2">12.2 功能标签页</a></li>
+                <li><a href="#123-状态提示区" class="level-2">12.3 状态提示区</a></li>
+                <li><a href="#124-统计卡片" class="level-2">12.4 统计卡片</a></li>
+                <li><a href="#125-进度条" class="level-2">12.5 进度条</a></li>
+                <li><a href="#126-当前处理红人" class="level-2">12.6 当前处理红人</a></li>
+                <li><a href="#127-操作按钮" class="level-2">12.7 操作按钮</a></li>
+                <li><a href="#128-日志区域" class="level-2">12.8 日志区域</a></li>
+                <li><a href="#129-安全提示" class="level-2">12.9 安全提示</a></li>
+            </ul>
 
-    <script src="js/manual.js"></script>
-</body>
-</html>
+            <li><a href="#13-常见问题" class="level-1">13. 常见问题</a></li>
+            <ul class="submenu">
+                <li><a href="#131-点击工具栏图标没反应" class="level-2">13.1 点击没反应</a></li>
+                <li><a href="#132-提示请先登录" class="level-2">13.2 提示请先登录</a></li>
+                <li><a href="#133-提示当前账号未授权" class="level-2">13.3 提示未授权</a></li>
+                <li><a href="#134-提示会员已过期" class="level-2">13.4 提示已过期</a></li>
+                <li><a href="#135-开始分析按钮是灰色的" class="level-2">13.5 开始按钮灰色</a></li>
+                <li><a href="#136-提示请在-instagram-tagged-页面点击开始分析" class="level-2">13.6 提示需 Tagged 页</a></li>
+                <li><a href="#137-提示请打开用户主页" class="level-2">13.7 提示需主页</a></li>
+                <li><a href="#138-点击开始分析滚动失败" class="level-2">13.8 分析滚动失败</a></li>
+                <li><a href="#139-分析卡住不动" class="level-2">13.9 分析卡住不动</a></li>
+                <li><a href="#1310-导出提示没有可导出的数据" class="level-2">13.10 导出无数据</a></li>
+                <li><a href="#1311-分析结果很多失败" class="level-2">13.11 很多失败</a></li>
+                <li><a href="#1312-侧边栏关闭后状态丢失" class="level-2">13.12 状态丢失</a></li>
+                <li><a href="#1313-浏览器重启后还能恢复吗" class="level-2">13.13 重启能恢复吗</a></li>
+                <li><a href="#1314-联系客服" class="level-2">13.14 联系客服</a></li>
+            </ul>
+
+            <li><a href="#14-账号安全建议" class="level-1">14. 账号安全建议</a></li>
+            <ul class="submenu">
+                <li><a href="#141-控制分析数量" class="level-2">14.1 控制分析数量</a></li>
+                <li><a href="#142-其他建议" class="level-2">14.2 其他建议</a></li>
+                <li><a href="#143-如果被-instagram-限制" class="level-2">14.3 被限制处理</a></li>
+            </ul>
+        </ul>
+    </div>
+</nav>
+
+<!-- 右侧正文内容 -->
+<main class="content">
+    <h1>Instagram 红人分析助手 - 从 0 到 1 操作文档</h1>
+
+    <blockquote><p><strong>Pathofnow 出品</strong> · 本文档面向第一次使用的用户，所有操作步骤都写得非常详细，跟着做就行。</p></blockquote>
+    <hr>
+
+    <h2>目录</h2>
+    <ol>
+        <li><a href="#1-它能干什么">它能干什么</a></li>
+        <li><a href="#2-安装前准备">安装前准备</a></li>
+        <li><a href="#3-安装插件">安装插件</a></li>
+        <li><a href="#4-登录流程">登录流程</a></li>
+        <li><a href="#5-购买授权码">购买授权码</a></li>
+        <li><a href="#6-授权码核销激活">授权码核销（激活）</a></li>
+        <li><a href="#7-功能一寻找红人tagged">寻找红人（Tagged）</a></li>
+        <li><a href="#8-功能二红人画像reels">红人画像（Reels）</a></li>
+        <li><a href="#9-功能三相似红人">相似红人</a></li>
+        <li><a href="#10-导出数据">导出数据</a></li>
+        <li><a href="#11-停止任务">停止任务</a></li>
+        <li><a href="#12-界面说明">界面说明</a></li>
+        <li><a href="#13-常见问题">常见问题</a></li>
+        <li><a href="#14-账号安全建议">账号安全建议</a></li>
+    </ol>
+    <hr>
+
+    <h2 id="1-它能干什么">1. 它能干什么</h2>
+    <p>这是一款 Chrome 浏览器插件，专门帮你分析 Instagram 红人，一共三个核心功能：</p>
+    <table>
+        <thead><tr><th>功能</th><th>作用</th><th>需要打开的页面</th></tr></thead>
+        <tbody>
+        <tr><td><strong>寻找红人</strong></td><td>批量寻找竟对品牌合作过的红人账号</td><td>Instagram 用户主页 tagged 标签页</td></tr>
+        <tr><td><strong>红人画像</strong></td><td>分析红人是否是优质红人</td><td>Instagram 用户主页</td></tr>
+        <tr><td><strong>相似红人</strong></td><td>基于目标红人推荐同类型优质红人</td><td>Instagram 用户主页</td></tr>
+        </tbody>
+    </table>
+    <p>采集完成后，可以一键导出 Excel（CSV）文件。</p>
+    <hr>
+
+    <h2 id="2-安装前准备">2. 安装前准备</h2>
+    <h3 id="21-你需要准备的东西">2.1 你需要准备的东西</h3>
+    <ol>
+        <li><strong>一台电脑</strong>（Windows / Mac 都可以）</li>
+        <li><strong>Chrome 浏览器</strong>（或 Edge、360 等基于 Chromium 的浏览器）</li>
+        <li><strong>一个 Google 账号</strong>（用于登录插件）</li>
+        <li><strong>一个 Instagram 账号</strong>（已经登录在浏览器里）</li>
+        <li><strong>安装插件</strong>（谷歌应用商店搜索插件名称 pathofnow）</li>
+    </ol>
+    <h3 id="22-确认-chrome-已登录-instagram">2.2 确认 Chrome 已登录 Instagram</h3>
+    <ol>
+        <li>打开 Chrome 浏览器</li>
+        <li>地址栏输入 <code>https://www.instagram.com/</code> 回车</li>
+        <li>确认你已经登录了自己的 Instagram 账号（能看到首页动态就行）</li>
+    </ol>
+    <blockquote><p>如果没登录 Instagram，插件没法采集数据。</p></blockquote>
+    <hr>
+
+    <h2 id="3-安装插件">3. 安装插件</h2>
+    <h3 id="31-打开谷歌应用商店">3.1 打开谷歌应用商店</h3>
+    <ol>
+        <li>在 Chrome 地址栏输入下面这串地址，回车：<br><code>https://chromewebstore.google.com/search/pathofnow?hl=zh-CN&amp;authuser=0</code></li>
+        <li>搜索结果会展示 :Instagram 红人分析助手 - pathofnow 。</li>
+        <li>鼠标点击，会跳转到插件详情和安装页，点击 添加至 Chrome 进行安装</li>
+    </ol>
+    <h3 id="32-确认安装成功">3.2 确认安装成功</h3>
+    <p>安装成功后，你会看到：</p>
+    <ul>
+        <li>扩展列表里多了一个叫「🚀 Instagram 红人分析助手 - pathofnow」的卡片</li>
+        <li>Chrome 工具栏右上角会出现一个插件图标（可能藏在拼图图标里）</li>
+    </ul>
+    <h3 id="33-把插件图标固定到工具栏推荐">3.3 把插件图标固定到工具栏（推荐）</h3>
+    <ol>
+        <li>点击 Chrome 工具栏右上角的<strong>拼图图标</strong> 🧩</li>
+        <li>找到「Instagram 红人分析助手」</li>
+        <li>点击它右边的<strong>图钉</strong>图标📌，把它固定到工具栏</li>
+    </ol>
+    <blockquote><p>固定后，以后点一下图标就能打开侧边栏，很方便。</p></blockquote>
+    <h3 id="34-打开侧边栏">3.4 打开侧边栏</h3>
+    <p>点击工具栏上的插件图标，浏览器右侧会弹出一个<strong>侧边栏</strong>，这就是插件的操作界面。</p>
+    <blockquote><p>如果点击没反应，看<a href="#13-常见问题">常见问题</a>。</p></blockquote>
+    <hr>
+
+    <h2 id="4-登录流程">4. 登录流程</h2>
+    <blockquote><p>必须先登录，才能使用所有功能。</p></blockquote>
+    <h3 id="41-点击登录按钮">4.1 点击登录按钮</h3>
+    <p>打开侧边栏后，在<strong>顶部</strong>你会看到一个蓝色按钮：</p>
+    <pre><code>[ 使用谷歌账户登录 ]</code></pre>
+    <p>点击它。</p>
+    <h3 id="42-完成-google-登录">4.2 完成 Google 登录</h3>
+    <p>点击后：</p>
+    <ol>
+        <li>浏览器会弹出一个 Google 登录窗口</li>
+        <li>选择你的 Google 账号（或输入账号密码登录）</li>
+        <li>如果提示「是否允许」，点「允许」/「继续」</li>
+    </ol>
+    <h3 id="43-登录成功后的样子">4.3 登录成功后的样子</h3>
+    <p>登录成功后，顶部会显示：</p>
+    <ul>
+        <li>你的<strong>头像</strong>（名字首字母）</li>
+        <li>你的<strong>名字</strong></li>
+        <li>你的<strong>邮箱</strong></li>
+        <li>授权状态标签（下面会讲）</li>
+    </ul>
+    <h3 id="44-登录失败怎么办">4.4 登录失败怎么办</h3>
+    <p>如果登录失败，顶部会显示红色错误提示，常见原因：</p>
+    <ul>
+        <li><strong>网络问题</strong>：确保能正常访问 Google</li>
+        <li><strong>Google 账号未选择</strong>：重新点击登录按钮，选一个账号</li>
+        <li><strong>弹窗被拦截</strong>：允许浏览器弹窗</li>
+        <li><strong>后端服务器连接失败</strong></li>
+    </ul>
+    <p>如果是登录谷歌失败可以重试，多试几次。</p>
+    <p>如果是后端服务连接失败，点右侧的「<strong>获取授权</strong>」按钮重试。</p>
+    <hr>
+
+    <h2 id="5-购买授权码">5. 购买授权码</h2>
+    <blockquote><p>登录 Google 只是身份验证，还要购买授权码并核销，才能真正使用功能。</p></blockquote>
+    <h3 id="51-点击购买按钮">5.1 点击购买按钮</h3>
+    <p>在侧边栏顶部右侧，找到红色按钮：</p>
+    <pre><code>[ 购买授权码 ]</code></pre>
+    <p>点击它，会打开一个新网页（购买页面）。</p>
+    <h3 id="52-完成购买">5.2 完成购买</h3>
+    <p>在打开的购买页面里，按照网站提示完成支付，你会获得一串<strong>授权码</strong>（一串字母数字组合的字符串）。</p>
+    <blockquote><p>请保存好这个授权码，后面核销要用。</p></blockquote>
+    <h3 id="53-授权状态说明">5.3 授权状态说明</h3>
+    <p>在侧边栏顶部，你会看到一个授权状态标签：</p>
+    <table>
+        <thead><tr><th>标签</th><th>颜色</th><th>含义</th></tr></thead>
+        <tbody>
+        <tr><td><strong>已授权</strong></td><td>绿色</td><td>授权有效，可以使用所有功能</td></tr>
+        <tr><td><strong>未授权</strong></td><td>灰色</td><td>还没核销授权码，需要先购买并核销</td></tr>
+        </tbody>
+    </table>
+    <p>旁边还会显示「<strong>到期: YYYY-MM-DD</strong>」，告诉你授权什么时候到期。</p>
+    <hr>
+
+    <h2 id="6-授权码核销激活">6. 授权码核销（激活）</h2>
+    <blockquote><p>买到授权码后，必须核销才能激活授权。</p></blockquote>
+    <h3 id="61-点击核销按钮">6.1 点击核销按钮</h3>
+    <p>在侧边栏顶部右侧，找到蓝色按钮：</p>
+    <pre><code>[ 授权码核销 ]</code></pre>
+    <p>点击它，会弹出一个输入框。</p>
+    <h3 id="62-输入授权码">6.2 输入授权码</h3>
+    <p>在弹出的输入框里，<strong>粘贴或输入</strong>你购买时获得的授权码。</p>
+    <h3 id="63-确认核销">6.3 确认核销</h3>
+    <p>点击「<strong>确定</strong>」按钮。</p>
+    <ul>
+        <li><strong>核销成功</strong>：输入框关闭，顶部授权状态变成绿色的「已授权」，并显示到期日期</li>
+        <li><strong>核销失败</strong>：输入框下方会显示红色错误原因，常见原因：
+            <ul><li>授权码输入错误 → 检查后重新输入</li><li>授权码已被使用 → 一个授权码只能用一次</li><li>授权码已过期 → 联系卖家</li><li>未登录 → 先完成 Google 登录</li></ul>
+        </li>
+    </ul>
+    <h3 id="64-核销成功后">6.4 核销成功后</h3>
+    <p>核销成功后，插件会自动刷新授权状态。如果没自动刷新，点击右上角的「<strong>获取授权</strong>」按钮手动刷新。</p>
+    <hr>
+
+    <h2 id="7-功能一寻找红人tagged">7. 功能一：寻找红人（Tagged）</h2>
+    <blockquote><p>作用：批量采集某个账号被标记（Tagged）的所有帖子里的红人信息。</p></blockquote>
+    <h3 id="71-第一步打开-tagged-页面">7.1 第一步：打开 Tagged 页面</h3>
+    <ol>
+        <li>在 Chrome 中打开 Instagram</li>
+        <li>打开某个账号的 <strong>Tagged 页面</strong>，网址格式是这样的：<br><code>https://www.instagram.com/用户名/tagged/</code></li>
+    </ol>
+    <p>举个例子，要采集 <code>nike</code> 被标记的帖子，就打开：</p>
+    <pre><code>https://www.instagram.com/nike/tagged/</code></pre>
+    <blockquote><p><strong>怎么找到 Tagged 页面？</strong><br>1. 打开某个用户的主页<br>2. 在主页上方有一排标签：帖子、Reels、Tagged（被标记）<br>3. 点击「Tagged」标签<br>4. 看浏览器地址栏，网址后面应该有 <code>/tagged/</code></p></blockquote>
+    <h3 id="72-第二步切换到寻找红人标签页">7.2 第二步：切换到「寻找红人」标签页</h3>
+    <p>在侧边栏中间，有一排三个大标签：</p>
+    <pre><code>[ 寻找红人 ]  [ 红人画像 ]  [ 相似红人 ]</code></pre>
+    <p>点击最左边的「<strong>寻找红人</strong>」。</p>
+    <h3 id="73-第三步确认页面状态正确">7.3 第三步：确认页面状态正确</h3>
+    <p>切换标签后，上方会显示状态提示：</p>
+    <ul>
+        <li>✅ <strong>正常</strong>：显示「请在 Instagram Tagged 页面点击开始分析」，开始按钮可点击</li>
+        <li>❌ <strong>页面不对</strong>：显示红色提示，开始按钮灰色不可点<ul><li>解决：确认网址里有 <code>/tagged/</code>，重新打开正确的 Tagged 页面</li></ul></li>
+    </ul>
+    <h3 id="74-第四步点击开始分析">7.4 第四步：点击「开始分析」</h3>
+    <p>点击蓝色的「<strong>开始分析</strong>」按钮。</p>
+    <p>点击后：</p>
+    <ol>
+        <li>按钮变成灰色不可点</li>
+        <li>「停止」按钮变成红色可点</li>
+        <li>状态提示变成「正在收集帖子...」</li>
+        <li>页面会<strong>自动滚动</strong>，收集所有帖子的链接</li>
+        <li>下方日志会实时显示进度</li>
+    </ol>
+    <blockquote><p><strong>重要</strong>：收集帖子阶段，请保持这个页面在屏幕上可见，不要切到别的标签页，否则滚动可能停下来。</p></blockquote>
+    <h3 id="75-第五步等待分析">7.5 第五步：等待分析</h3>
+    <p>收集完帖子后，插件会自动开始<strong>逐个分析</strong>每个帖子的作者：</p>
+    <ol>
+        <
