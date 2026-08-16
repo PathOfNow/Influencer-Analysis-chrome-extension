@@ -121,10 +121,16 @@
         <ul>
             <li><code>storage</code>: Used to save local configurations, login tokens, and analysis progress, preventing state loss upon browser restarts.</li>
             <li><code>identity</code>: Strictly used to initiate the official Google OAuth sign-in flow for account authentication.</li>
-            <li><code>alarms</code>: Used to handle periodic background tasks and sync task status to prevent unexpected session timeouts.</li>
+            <li><code>scripting</code>: Read DOM elements on the current active user/profile page to extract publicly visible performance metrics (such as post engagement, follower counts, and interaction rates).
+
+                Intercept and parse authorized network API responses to fetch detailed page performance data required for calculating true engagement rates.
+
+                All script executions are triggered locally on the target social media pages solely when the user interacts with the extension. No user personal data is modified, tracked across unrelated sites, or sold to third parties.</li>
             <li><code>sidePanel</code>: Used to display the primary operational UI, real-time analytics dashboard, and insights within the Chrome sidebar.</li>
-            <li><code>host_permissions (https://www.instagram.com/*)</code>: Required for <code>chrome.tabs.query</code> and <code>chrome.tabs.onUpdated</code> to listen for tab loading completion (<code>status === 'complete'</code>) and inspect active tab URLs (e.g., /username/, /reels/, /tagged/) for pre-analysis page validity checks. Without this permission, Chrome redacts <code>tab.url</code> as <code>undefined</code>, causing page validation to fail. All non-Instagram tabs and browsing history remain completely unread and untouched.</li>
+            <li><code>host_permissions (https://www.instagram.com/*)</code>: Required to target Instagram public creator profiles and video/reels pages to display embedded analytics UI and extract public metadata.</li>
+            <li><code>host_permissions (https://www.youtube.com/*)</code>Required to target YouTube public channel pages and video pages to analyze engagement metrics and render in-page insights. </li>
             <li><code>host_permissions (https://pathofnow.cn/*)</code>: Required to connect to our backend API server to validate user Google authentication tokens, retrieve authorization status, and fetch up-to-date analysis configuration rules.</li>
+
         </ul>
 
         <h2>5. Data Security</h2>
@@ -193,9 +199,12 @@
         <ul>
             <li><code>storage</code>：用于在本地保存配置、登录 Token 和分析进度，避免浏览器重启后丢失状态。</li>
             <li><code>identity</code>：仅用于启动 Google 官方 OAuth 登录流程以完成用户身份验证。</li>
-            <li><code>alarms</code>：用于定期处理后台任务并同步分析状态，防止浏览器掉线或会话超时。</li>
+            <li><code>scripting</code>：读取当前活跃用户/主页上的 DOM 元素，提取公开可见的互动指标（如帖子互动数、粉丝数和互动率）。
+                捕获并解析经授权的网络 API 响应，以获取计算真实互动率所需的详细页面表现数据。
+                所有脚本注入均在用户互动时仅于目标社交媒体页面局部触发。插件绝不会修改用户个人数据、进行跨站跟踪，也不会将数据出售给第三方。。</li>
             <li><code>sidePanel</code>：用于在 Chrome 侧边栏展示核心操作界面、实时数据仪表盘与分析结果。</li>
-            <li><code>host_permissions (https://www.instagram.com/*)</code>：必须用于通过 <code>chrome.tabs.query</code> 及 <code>chrome.tabs.onUpdated</code> 监听活动标签页的加载完成状态（<code>status === 'complete'</code>）并读取当前 URL（如 /username/、/reels/、/tagged/），以进行启动分析前的前置页面合法性校验。如无此权限，Chrome 会将 <code>tab.url</code> 静默擦除为 <code>undefined</code> 导致检测失败。绝不读取或触碰任何非 Instagram 标签页及浏览历史。</li>
+            <li><code>host_permissions (https://www.instagram.com/*)</code>：需要用于定位 Instagram 公开创作者主页及视频/Reels 页面，以展示嵌入式分析界面并提取公开元数据。</li>
+            <li><code>host_permissions (https://www.youtube.com/*)</code>：需要用于定位 YouTube 公开频道页面及视频页面，以分析互动指标并在页面内渲染分析数据。</li>
             <li><code>host_permissions (https://pathofnow.cn/*)</code>：用于连接我们的后端 API 服务器，以验证用户 Google 身份 Token、检索授权状态并获取最新的分析配置规则。</li>
         </ul>
 
