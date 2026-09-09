@@ -1,535 +1,657 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>integrate-email-platform</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
-html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
-iframe { margin: auto; }
-a.url { word-break: break-all; }
-a:active, a:hover { outline: 0px; }
-.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
-#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
-#write.first-line-indent p { text-indent: 2em; }
-#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
-#write.first-line-indent li { margin-left: 2em; }
-.for-image #write { padding-left: 8px; padding-right: 8px; }
-body.typora-export { padding-left: 30px; padding-right: 30px; }
-.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
-@media screen and (max-width: 500px) {
-  body.typora-export { padding-left: 0px; padding-right: 0px; }
-  #write { padding-left: 20px; padding-right: 20px; }
-  .CodeMirror-sizer { margin-left: 0px !important; }
-  .CodeMirror-gutters { display: none !important; }
-}
-#write li > figure:last-child { margin-bottom: 0.5rem; }
-#write ol, #write ul { position: relative; }
-img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
-button, input, select, textarea { color: inherit; font: inherit; }
-input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
-*, ::after, ::before { box-sizing: border-box; }
-#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
-#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
-p { line-height: inherit; }
-h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
-p { orphans: 4; }
-h1 { font-size: 2rem; }
-h2 { font-size: 1.8rem; }
-h3 { font-size: 1.6rem; }
-h4 { font-size: 1.4rem; }
-h5 { font-size: 1.2rem; }
-h6 { font-size: 1rem; }
-.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
-.hidden { display: none; }
-.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
-a { cursor: pointer; }
-sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
-sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
-#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
-figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
-figure > table { margin: 0px; }
-tr { break-inside: avoid; break-after: auto; }
-thead { display: table-header-group; }
-table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
-table.md-table td { min-width: 32px; }
-.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
-.CodeMirror-linenumber { user-select: none; }
-.CodeMirror { text-align: left; }
-.CodeMirror-placeholder { opacity: 0.3; }
-.CodeMirror pre { padding: 0px 4px; }
-.CodeMirror-lines { padding: 0px; }
-div.hr:focus { cursor: none; }
-#write pre { white-space: pre-wrap; }
-#write.fences-no-line-wrapping pre { white-space: pre; }
-#write pre.ty-contain-cm { white-space: normal; }
-.CodeMirror-gutters { margin-right: 4px; }
-.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
-.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
-#write .md-fences.mock-cm { white-space: pre-wrap; }
-.md-fences.md-fences-with-lineno { padding-left: 0px; }
-#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
-.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
-.CodeMirror-line, twitterwidget { break-inside: avoid; }
-.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
-.footnotes + .footnotes { margin-top: 0px; }
-.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
-li div { padding-top: 0px; }
-blockquote { margin: 1rem 0px; }
-li .mathjax-block, li p { margin: 0.5rem 0px; }
-li { margin: 0px; position: relative; }
-blockquote > :last-child { margin-bottom: 0px; }
-blockquote > :first-child, li > :first-child { margin-top: 0px; }
-.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
-#write .footnote-line { white-space: pre-wrap; }
-@media print {
-  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
-  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
-  .typora-export * { -webkit-print-color-adjust: exact; }
-  html.blink-to-pdf { font-size: 13px; }
-  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
-  .typora-export #write::after { height: 0px; }
-  .is-mac table { break-inside: avoid; }
-}
-.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
-a img, img a { cursor: pointer; }
-pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
-p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
-#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
-p > .md-image:only-child { display: inline-block; width: 100%; }
-#write .MathJax_Display { margin: 0.8em 0px 0px; }
-.md-math-block { width: 100%; }
-.md-math-block:not(:empty)::after { display: none; }
-[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
-.md-task-list-item { position: relative; list-style-type: none; }
-.task-list-item.md-task-list-item { padding-left: 0px; }
-.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
-.math { font-size: 1rem; }
-.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
-.md-toc-content { position: relative; margin-left: 0px; }
-.md-toc-content::after, .md-toc::after { display: none; }
-.md-toc-item { display: block; color: rgb(65, 131, 196); }
-.md-toc-item a { text-decoration: none; }
-.md-toc-inner:hover { text-decoration: underline; }
-.md-toc-inner { display: inline-block; cursor: pointer; }
-.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
-.md-toc-h2 .md-toc-inner { margin-left: 2em; }
-.md-toc-h3 .md-toc-inner { margin-left: 4em; }
-.md-toc-h4 .md-toc-inner { margin-left: 6em; }
-.md-toc-h5 .md-toc-inner { margin-left: 8em; }
-.md-toc-h6 .md-toc-inner { margin-left: 10em; }
-@media screen and (max-width: 48em) {
-  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
-  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
-  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
-  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
-}
-a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
-.footnote-line a:not(.reversefootnote) { color: inherit; }
-.md-attr { display: none; }
-.md-fn-count::after { content: "."; }
-code, pre, samp, tt { font-family: var(--monospace); }
-kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
-.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
-code { text-align: left; vertical-align: initial; }
-a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
-.md-inline-math .MathJax_SVG .noError { display: none !important; }
-.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
-.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
-.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
-.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
-.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
-.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
-.MathJax_SVG * { transition: none 0s ease 0s; }
-.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
-.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
-.md-diagram-panel > svg { max-width: 100%; }
-[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
-[lang="mermaid"] .node text { font-size: 1rem; }
-table tr th { border-bottom: 0px; }
-video { max-width: 100%; display: block; margin: 0px auto; }
-iframe { max-width: 100%; width: 100%; border: none; }
-.highlight td, .highlight tr { border: 0px; }
-svg[id^="mermaidChart"] { line-height: 1em; }
-mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
-.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
-mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+    <meta charset="UTF-8">
+    <title>邮件群发平台 · 使用指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #f0f2f5;
+            color: #1e293b;
+            line-height: 1.75;
+        }
 
+        /* ===== 侧边栏 ===== */
+        .sidebar {
+            width: 300px;
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, .15);
+        }
+        .sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, .2);
+            border-radius: 4px;
+        }
+        .sidebar-logo {
+            padding: 28px 24px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .sidebar-logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2563eb, #60a5fa);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .sidebar-logo-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: .5px;
+        }
+        .sidebar-logo-sub {
+            font-size: 11px;
+            color: rgba(255, 255, 255, .5);
+            margin-top: 2px;
+        }
+        .sidebar-nav {
+            padding: 16px 0;
+        }
+        .sidebar-nav ul {
+            list-style: none;
+        }
+        .sidebar-nav ul li a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 24px;
+            color: rgba(255, 255, 255, .7);
+            text-decoration: none;
+            font-size: 14px;
+            border-left: 3px solid transparent;
+            transition: all .25s;
+        }
+        .sidebar-nav ul li a:hover {
+            background: rgba(255, 255, 255, .06);
+            color: #fff;
+            border-left-color: #60a5fa;
+        }
+        .sidebar-nav ul li a.active {
+            background: rgba(37, 99, 235, .2);
+            color: #fff;
+            border-left-color: #2563eb;
+            font-weight: 600;
+        }
+        .sidebar-nav ul li ul {
+            padding-left: 0;
+            background: rgba(0, 0, 0, .1);
+        }
+        .sidebar-nav ul li ul li a {
+            padding-left: 52px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, .55);
+        }
+        .sidebar-nav ul li ul li a:hover {
+            color: #fff;
+        }
+        .sidebar-nav ul li ul li a.active {
+            color: #60a5fa;
+            background: rgba(37, 99, 235, .12);
+        }
 
-:root {
-    --side-bar-bg-color: #fafafa;
-    --control-text-color: #777;
-}
+        /* ===== 内容区 ===== */
+        .content {
+            margin-left: 300px;
+            padding: 40px 48px;
+            min-height: 100vh;
+        }
+        .content-inner {
+            max-width: 960px;
+            margin: 0 auto;
+        }
 
-@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+        /* 卡片 */
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 36px 40px;
+            margin-bottom: 28px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .06), 0 8px 24px rgba(0, 0, 0, .04);
+        }
+        .card-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 14px;
+        }
+        .card-title .icon {
+            font-size: 24px;
+        }
+        .card-subtitle {
+            font-size: 18px;
+            font-weight: 600;
+            color: #334155;
+            margin: 24px 0 12px;
+            padding-left: 12px;
+            border-left: 3px solid #2563eb;
+        }
 
-/* open-sans-regular - latin-ext_latin */
-  /* open-sans-italic - latin-ext_latin */
-    /* open-sans-700 - latin-ext_latin */
-    /* open-sans-700italic - latin-ext_latin */
-  html {
-    font-size: 16px;
-}
+        /* 图片样式 */
+        .doc-img {
+            display: block;
+            max-width: 100%;
+            margin: 16px auto;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background: #fff;
+            padding: 8px;
+        }
 
-body {
-    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: rgb(51, 51, 51);
-    line-height: 1.6;
-}
+        /* 段落 */
+        p {
+            margin: 12px 0;
+            line-height: 1.8;
+            color: #475569;
+        }
+        strong {
+            color: #0f172a;
+            font-weight: 600;
+        }
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "Fira Code", Consolas, monospace;
+            font-size: 13px;
+            color: #0f172a;
+        }
 
-#write {
-    max-width: 860px;
-  	margin: 0 auto;
-  	padding: 30px;
-    padding-bottom: 100px;
-}
+        /* 列表 */
+        ul,
+        ol {
+            margin: 12px 0;
+            padding-left: 24px;
+        }
+        li {
+            margin: 6px 0;
+            color: #475569;
+        }
+        ul li::marker {
+            color: #2563eb;
+        }
 
-@media only screen and (min-width: 1400px) {
-	#write {
-		max-width: 1024px;
-	}
-}
+        /* 引用 */
+        blockquote {
+            background: #f0f9ff;
+            border-left: 4px solid #2563eb;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #1e40af;
+        }
 
-@media only screen and (min-width: 1800px) {
-	#write {
-		max-width: 1200px;
-	}
-}
+        /* 表格 */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 16px 0;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        table th {
+            background: #f1f5f9;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 2px solid #e2e8f0;
+            color: #334155;
+        }
+        table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #475569;
+        }
+        table tr:last-child td {
+            border-bottom: none;
+        }
+        table tr:hover td {
+            background: #f8fafc;
+        }
 
-#write > ul:first-child,
-#write > ol:first-child{
-    margin-top: 30px;
-}
+        /* 代码块 */
+        .code-block {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            font-family: "Fira Code", Consolas, monospace;
+            font-size: 13px;
+            line-height: 1.7;
+            overflow-x: auto;
+            margin: 16px 0;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
 
-a {
-    color: #4183C4;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    position: relative;
-	color: rgb(225,160,14);
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    line-height: 1.4;
-    cursor: text;
-}
-h1:hover a.anchor,
-h2:hover a.anchor,
-h3:hover a.anchor,
-h4:hover a.anchor,
-h5:hover a.anchor,
-h6:hover a.anchor {
-    text-decoration: none;
-}
-h1 tt,
-h1 code {
-    font-size: inherit;
-}
-h2 tt,
-h2 code {
-    font-size: inherit;
-}
-h3 tt,
-h3 code {
-    font-size: inherit;
-}
-h4 tt,
-h4 code {
-    font-size: inherit;
-}
-h5 tt,
-h5 code {
-    font-size: inherit;
-}
-h6 tt,
-h6 code {
-    font-size: inherit;
-}
-h1 {
-    padding-bottom: .3em;
-    font-size: 2.25em;
-    line-height: 1.2;
-    border-bottom: 1px solid #eee;
-}
-h2 {
-   padding-bottom: .3em;
-    font-size: 1.75em;
-    line-height: 1.225;
-    border-bottom: 1px solid #eee;
-}
-h3 {
-    font-size: 1.5em;
-    line-height: 1.43;
-}
-h4 {
-    font-size: 1.25em;
-}
-h5 {
-    font-size: 1em;
-}
-h6 {
-   font-size: 1em;
-    color: #777;
-}
-p,
-blockquote,
-ul,
-ol,
-dl,
-table{
-    margin: 0.8em 0;
-}
-li>ol,
-li>ul {
-    margin: 0 0;
-}
-hr {
-    height: 2px;
-    padding: 0;
-    margin: 16px 0;
-    background-color: #e7e7e7;
-    border: 0 none;
-    overflow: hidden;
-    box-sizing: content-box;
-}
+        /* 步骤 */
+        .step-container {
+            margin: 20px 0;
+        }
+        .step-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #60a5fa);
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .step-content {
+            flex: 1;
+        }
+        .step-title {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
 
-li p.first {
-    display: inline-block;
-}
-ul,
-ol {
-    padding-left: 30px;
-}
-ul:first-child,
-ol:first-child {
-    margin-top: 0;
-}
-ul:last-child,
-ol:last-child {
-    margin-bottom: 0;
-}
-blockquote {
-    border-left: 4px solid #dfe2e5;
-    padding: 0 15px;
-    color: #777777;
-}
-blockquote blockquote {
-    padding-right: 0;
-}
-table {
-    padding: 0;
-    word-break: initial;
-}
-table tr {
-    border-top: 1px solid #dfe2e5;
-    margin: 0;
-    padding: 0;
-}
-table tr:nth-child(2n),
-thead {
-    background-color: #f8f8f8;
-}
-table tr th {
-    font-weight: bold;
-    border: 1px solid #dfe2e5;
-    border-bottom: 0;
-    margin: 0;
-    padding: 6px 13px;
-}
-table tr td {
-    border: 1px solid #dfe2e5;
-    margin: 0;
-    padding: 6px 13px;
-}
-table tr th:first-child,
-table tr td:first-child {
-    margin-top: 0;
-}
-table tr th:last-child,
-table tr td:last-child {
-    margin-bottom: 0;
-}
+        /* 注意事项 */
+        .note {
+            background: #fefce8;
+            border-left: 4px solid #f59e0b;
+            padding: 14px 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 14px;
+            color: #854d0e;
+        }
 
-.CodeMirror-lines {
-    padding-left: 4px;
-}
+        /* 成功/失败提示 */
+        .msg-success {
+            color: #16a34a;
+            font-weight: 500;
+        }
+        .msg-error {
+            color: #dc2626;
+            font-weight: 500;
+        }
 
-.code-tooltip {
-    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
-    border-top: 1px solid #eef2f2;
-}
-
-.md-fences,
-code,
-tt {
-    border: 1px solid #e7eaed;
-    background-color: #f8f8f8;
-    border-radius: 3px;
-    padding: 0;
-    padding: 2px 4px 0px 4px;
-    font-size: 0.9em;
-}
-
-code {
-    background-color: #f3f4f4;
-    padding: 0 2px 0 2px;
-}
-
-.md-fences {
-    margin-bottom: 15px;
-    margin-top: 15px;
-    padding-top: 8px;
-    padding-bottom: 6px;
-}
-
-
-.md-task-list-item > input {
-  margin-left: -1.3em;
-}
-
-@media print {
-    html {
-        font-size: 13px;
-    }
-    table,
-    pre {
-        page-break-inside: avoid;
-    }
-    pre {
-        word-wrap: break-word;
-    }
-}
-
-.md-fences {
-	background-color: #f8f8f8;
-}
-#write pre.md-meta-block {
-	padding: 1rem;
-    font-size: 85%;
-    line-height: 1.45;
-    background-color: #f7f7f7;
-    border: 0;
-    border-radius: 3px;
-    color: #777777;
-    margin-top: 0 !important;
-}
-
-.mathjax-block>.code-tooltip {
-	bottom: .375rem;
-}
-
-.md-mathjax-midline {
-    background: #fafafa;
-}
-
-#write>h3.md-focus:before{
-	left: -1.5625rem;
-	top: .375rem;
-}
-#write>h4.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-#write>h5.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-#write>h6.md-focus:before{
-	left: -1.5625rem;
-	top: .285714286rem;
-}
-.md-image>.md-meta {
-    /*border: 1px solid #ddd;*/
-    border-radius: 3px;
-    padding: 2px 0px 0px 4px;
-    font-size: 0.9em;
-    color: inherit;
-}
-
-.md-tag {
-    color: #a7a7a7;
-    opacity: 1;
-}
-
-.md-toc { 
-    margin-top:20px;
-    padding-bottom:20px;
-}
-
-.sidebar-tabs {
-    border-bottom: none;
-}
-
-#typora-quick-open {
-    border: 1px solid #ddd;
-    background-color: #f8f8f8;
-}
-
-#typora-quick-open-item {
-    background-color: #FAFAFA;
-    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
-    border-style: solid;
-    border-width: 1px;
-}
-
-/** focus mode */
-.on-focus-mode blockquote {
-    border-left-color: rgba(85, 85, 85, 0.12);
-}
-
-header, .context-menu, .megamenu-content, footer{
-    font-family: "Segoe UI", "Arial", sans-serif;
-}
-
-.file-node-content:hover .file-node-icon,
-.file-node-content:hover .file-node-open-state{
-    visibility: visible;
-}
-
-.mac-seamless-mode #typora-sidebar {
-    background-color: #fafafa;
-    background-color: var(--side-bar-bg-color);
-}
-
-.md-lang {
-    color: #b4654d;
-}
-
-.html-for-mac .context-menu {
-    --item-hover-bg-color: #E6F0FE;
-}
-
-#md-notification .btn {
-    border: 0;
-}
-
-.dropdown-menu .divider {
-    border-color: #e5e5e5;
-}
-
-.ty-preferences .window-content {
-    background-color: #fafafa;
-}
-
-.ty-preferences .nav-group-item.active {
-    color: white;
-    background: #999;
-}
-
-
-</style>
- <link rel="icon" type="image/png" href="assets/images/logo.png">
+        /* QA样式 */
+        .faq-item {
+            margin: 20px 0;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .faq-q {
+            background: #f8fafc;
+            padding: 16px 20px;
+            font-weight: 600;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+        }
+        .faq-a {
+            padding: 16px 20px;
+            color: #475569;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+    </style>
 </head>
-<body class='typora-export os-windows' >
-<div  id='write'  class = ''><h1><a name="邮件群发平台-·-从-0-到-1-使用指南" class="md-header-anchor"></a><span>邮件群发平台 · 从 0 到 1 使用指南</span></h1><h2><a name="一功能简介" class="md-header-anchor"></a><span>一、功能简介</span></h2><p><span>本平台是一个 Chrome 侧边栏扩展功能，用你的 Gmail 账号批量发送邮件。支持两种发送方式：</span></p><ul><li><strong><span>直接发送</span></strong><span>：表格自带邮箱、主题和正文列，逐行直接发送</span></li><li><strong><span>模板发送</span></strong><span>：预先保存主题/正文模板，用表格中的列值填充 </span><code>{占位符}</code></li></ul><p><span>所有模板配置和任务状态仅保存在浏览器本地缓存中，</span><strong><span>服务端不采集任何邮箱或邮件内容敏感数据</span></strong><span>。</span></p><p><span>发送过程中即使关闭侧边栏或电脑锁屏，下次打开侧边栏会自动提示是否恢复未完成的任务。</span></p><hr /><h2><a name="二从-0-到-1-使用流程" class="md-header-anchor"></a><span>二、从 0 到 1 使用流程</span></h2><h3><a name="第-1-步登录-gmail-账号" class="md-header-anchor"></a><span>第 1 步：登录 Gmail 账号</span></h3><ol start='' ><li><p><span>切换平台到「KOL建联」→ 进入「邮件群发引擎」Tab</span></p></li><li><p><span>点击「登录 Gmail 账号」按钮</span></p></li><li><p><span>弹出 Google 授权窗口，选择你的 Gmail 账号并同意发送权限</span></p></li><li><p><span>授权后显示账号邮箱和「已连接」状态</span></p><p><span> </span><img src="images/image-20260908114455087.png" referrerpolicy="no-referrer" alt="image-20260908114455087"></p></li></ol><p><strong><span>退出登录</span></strong><span>：点击右下角「退出登录」链接，会清除本机授权缓存。下次登录时可选择其他 Google 账号。</span></p><h3><a name="第-2-步准备发送素材" class="md-header-anchor"></a><span>第 2 步：准备发送素材</span></h3><p><span>表格格式要求：</span></p><ul><li><span>文件类型：</span><code>.xlsx</code><span> 或 </span><code>.csv</code></li><li><span>第一行为表头，从第二行起每行发送 1 封邮件</span></li><li><span>必须有一列列名包含 </span><code>邮箱</code><span>（作为收件地址）</span></li><li><span>其他列可在主题/正文模板中用 </span><code>{列名}</code><span> 引用</span></li></ul><h4><a name="模板发送" class="md-header-anchor"></a><span>模板发送</span></h4><p><span>示例表结构（</span><strong><span>模板发送，只需要邮箱和占位符列</span></strong><span>）：</span></p><figure><table><thead><tr><th><span>邮箱</span></th><th style='text-align:-------;' ><span>昵称</span></th><th><span>粉丝数</span></th><th><span>平均互动率</span></th><th><span>红人简介</span></th></tr></thead><tbody><tr><td><a href='mailto:a@xx.com' target='_blank' class='url'>a@xx.com</a></td><td style='text-align:-------;' ><span>McKenna Lynn</span></td><td><span>Alice</span></td><td><span>2.2%</span></td><td><span>xxxx</span></td></tr><tr><td><a href='mailto:b@xx.com' target='_blank' class='url'>b@xx.com</a></td><td style='text-align:-------;' ><span>zz</span></td><td><span>Bob</span></td><td><span>2.2%</span></td><td><span>xxxxxxx</span></td></tr></tbody></table></figure><blockquote><p><span>模板示例：</span></p><p><span>主题 : 合作邀请 - </span><strong><span>{昵称}</span></strong></p><p><span>正文 : 嗨 </span><strong><span>{{昵称}}</span></strong><span>！</span></p><p><span>看到你写得“{{用户简介}}”，就知道你的粉丝群体跟我们的产品非常契合。</span></p><p><span>凭借你 </span><strong><span>{{粉丝数}}</span></strong><span> 的账号体量和 </span><strong><span>{{平均互动率}}</span></strong><span> 的强互动，你的种草说服力非常强。我们现在有一个高佣金的带货计划，你只需要挂个专属折扣链接，粉丝下单你就能直接拿提成。我们负责提供所有精美的图片和文案，你完全不需要写稿，轻松又省心。</span></p><p><span>有兴趣了解的话，</span><strong><span>直接回复“1”</span></strong><span>，我马上把详细的资料和样品方案发你！</span></p></blockquote><h4><a name="直接发送" class="md-header-anchor"></a><span>直接发送</span></h4><p><span>示例表结构：</span></p><figure><table><thead><tr><th><span>邮箱</span></th><th><span>主题</span></th><th><span>正文</span></th></tr></thead><tbody><tr><td><a href='mailto:a@xx.com' target='_blank' class='url'>a@xx.com</a></td><td><span>合作邀请</span></td><td><span>你好 Alice，希望...</span></td></tr><tr><td><a href='mailto:b@xx.com' target='_blank' class='url'>b@xx.com</a></td><td><span>合作邀请</span></td><td><span>你好 Bob，希望...</span></td></tr></tbody></table></figure><h3><a name="第-3-步配置模板仅模板发送需要）" class="md-header-anchor"></a><span>第 3 步：配置模板（仅模板发送需要）</span></h3><ol start='' ><li><span>切换到「发送模板配置」Tab</span></li><li><span>填写邮件主题模板和正文模板，支持 </span><code>{列名}</code><span> 变量</span></li><li><span>点击「保存模板」→ 保存到浏览器本地缓存</span></li><li><span>下次使用无需重复填写，直接在「邮件群发」Tab 选择「模板发送」即可</span></li></ol><p><strong><span>隐私说明</span></strong><span>：模板仅保存在本机浏览器扩展缓存中，服务端不会采集任何邮箱或邮件内容数据。</span></p><h3><a name="第-4-步选择发送模式并预览" class="md-header-anchor"></a><span>第 4 步：选择发送模式并预览</span></h3><p><span>回到「邮件群发」Tab，在「发送模式与预览」区：</span></p><ol start='' ><li><p><span>选择发送模式：</span></p><ul><li><strong><span>直接发送</span></strong><span>：表格须含邮箱/主题/正文列，逐行直接用表格内容发送</span></li><li><strong><span>模板发送</span></strong><span>：使用已保存模板，表格须含模板中所有 </span><code>{占位符}</code><span> 对应的列</span></li></ul></li><li><p><span>校验提示：</span></p><ul><li><span>✓ 绿色提示 = 校验通过，可开始发送</span></li><li><span>✕ 红色提示 = 缺少列或占位符不匹配，需补充表格或修改模板</span></li></ul></li><li><p><span>发送内容预览：</span></p><ul><li><span>导入文件后会自动显示第一条邮件预览（收件邮箱、主题、正文）</span></li><li><span>点击「‹ 上一条」/「下一条 ›」翻动浏览</span></li><li><span>第一条禁用「上一条」，最后一条禁用「下一条」</span></li><li><span>位置显示「N / M」当前索引/总数</span></li></ul></li></ol><h3><a name="第-5-步设置发送参数并开始发送" class="md-header-anchor"></a><span>第 5 步：设置发送参数并开始发送</span></h3><ol start='' ><li><span>设置「发送间隔（秒/封）」：建议 30 秒以上，避免被 Gmail 限流</span></li><li><span>设置「每日上限（封）」：默认 50，达到后自动停止</span></li><li><span>点击「开始发送」→ 进入发送循环</span></li><li><span>状态栏显示进度（如 </span><code>已发送 5/30</code><span>）</span></li><li><span>日志区逐条显示成功/失败明细</span></li></ol><p><strong><span>发送控制</span></strong><span>：</span></p><ul><li><span>「暂停」：暂停发送，可点「继续」恢复</span></li><li><span>「停止」：停止发送，已发送的不会重复</span></li></ul><hr /><h2><a name="三异常恢复机制" class="md-header-anchor"></a><span>三、异常恢复机制</span></h2><p><span>发送过程中如果发生意外中断，本功能会自动保存进度并在下次打开侧边栏时恢复。</span></p><h3><a name="触发异常恢复的场景" class="md-header-anchor"></a><span>触发异常恢复的场景</span></h3><ol start='' ><li><strong><span>关闭侧边栏</span></strong><span>：发送中关闭侧边栏 → JS 上下文销毁 → 下次打开侧边栏自动弹窗提示</span></li><li><strong><span>电脑锁屏后关闭侧边栏</span></strong><span>：锁屏期间侧边栏未关闭时，Chrome 会节流定时器但不销毁上下文，解锁后发送自然继续；如果在锁屏期间关闭了侧边栏，靠 </span><code>chrome.storage.local</code><span> 持久化在重开时恢复</span></li><li><strong><span>Gmail 授权失效</span></strong><span>：发送中返回 401 → 自动暂停 → 提示重新授权 → 重新登录后点「继续」</span></li><li><strong><span>网络波动</span></strong><span>：单封发送失败自动跳过，不停止整个任务</span></li></ol><h3><a name="恢复流程" class="md-header-anchor"></a><span>恢复流程</span></h3><ol start='' ><li><span>每封邮件发送后（成功或失败）立即将剩余队列保存到 </span><code>chrome.storage.local</code></li><li><span>下次打开侧边栏 → 自动检测到未完成任务 → 弹窗显示「剩余 N 封，已成功 M 封，失败 K 封」</span></li><li><span>点「继续」→ 自动切回邮件 Tab → 恢复队列和配置 → 验证 token → 重启发送循环</span></li><li><span>点「放弃」→ 清除任务状态 → 可重新开始</span></li></ol><h3><a name="异常恢复时的日限检查" class="md-header-anchor"></a><span>异常恢复时的日限检查</span></h3><p><span>恢复时会检查今日已发送数是否达日限：若已达限，任务自动结束，不会超发。</span></p><hr /><h2><a name="四字段识别规则" class="md-header-anchor"></a><span>四、字段识别规则</span></h2><figure><table><thead><tr><th><span>字段</span></th><th><span>识别列名（不区分大小写）</span></th></tr></thead><tbody><tr><td><span>收件邮箱</span></td><td><span>email、邮箱、e-mail、mail、emailaddress</span></td></tr><tr><td><span>主题</span></td><td><span>subject、主题、邮件主题</span></td></tr><tr><td><span>正文</span></td><td><span>body、content、正文、邮件内容、message</span></td></tr></tbody></table></figure><p><span>一个单元格含多个邮箱时取第一个。</span></p><hr /><h2><a name="五模板语法" class="md-header-anchor"></a><span>五、模板语法</span></h2><ul><li><span>用 </span><code>{列名}</code><span> 引用表格列值，如 </span><code>{name}</code><span>、</span><code>{username}</code></li><li><span>发送时自动替换为该行对应列的内容</span></li><li><span>列名不区分大小写、忽略首尾空格</span></li><li><span>模板发送时，模板中所有占位符必须能在表格中找到对应列，否则校验不通过</span></li></ul><hr /><h2><a name="六常见问题" class="md-header-anchor"></a><span>六、常见问题</span></h2><p><strong><span>Q：直接发送和模板发送的区别？</span></strong>
-<span>A：直接发送用表格里的主题/正文列；模板发送用已保存的模板+表格占位符替换。</span></p><p><strong><span>Q：模板保存在哪里？会被上传吗？</span></strong>
-<span>A：模板保存在 Chrome 浏览器本地扩展缓存中，不会上传服务端，不采集任何邮箱敏感数据。</span></p><p><strong><span>Q：发送失败的邮件会重发吗？</span></strong>
-<span>A：不会，失败自动跳过，不重复发送。失败原因见日志区。</span></p><p><strong><span>Q：如何切换 Gmail 发件账号？</span></strong>
-<span>A：点「退出登录」清除本机授权缓存，再点「登录 Gmail 账号」，在弹窗中选择其他 Google 账号。</span></p><p><strong><span>Q：锁屏后发送会继续吗？</span></strong>
-<span>A：侧边栏未关闭时，Chrome 节流定时器但不销毁，解锁后自然继续。侧边栏关闭时靠本地缓存，重开时弹窗恢复。</span></p></div>
+<body>
+
+<aside class="sidebar">
+    <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">📧</div>
+        <div>
+            <div class="sidebar-logo-text">邮件群发平台</div>
+            <div class="sidebar-logo-sub">使用指南</div>
+        </div>
+    </div>
+    <nav class="sidebar-nav">
+        <ul>
+            <li><a href="#intro" class="active">📋 功能简介</a></li>
+            <li>
+                <a href="#workflow">🚀 使用流程</a>
+                <ul>
+                    <li><a href="#step1">登录 Gmail 账号</a></li>
+                    <li><a href="#step2">准备发送素材</a></li>
+                    <li><a href="#step3">配置模板</a></li>
+                    <li><a href="#step4">选择模式并预览</a></li>
+                    <li><a href="#step5">设置参数并发送</a></li>
+                </ul>
+            </li>
+            <li><a href="#recovery">🔄 异常恢复</a></li>
+            <li><a href="#fields">🔍 字段识别</a></li>
+            <li><a href="#template-syntax">📝 模板语法</a></li>
+            <li><a href="#faq">❓ 常见问题</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<main class="content">
+    <div class="content-inner">
+
+        <!-- ===== 功能简介 ===== -->
+        <section id="intro" class="card">
+            <h2 class="card-title"><span class="icon">📋</span>功能简介</h2>
+            <p>本平台是一个 <strong>Chrome 侧边栏扩展功能</strong>，用你的 Gmail 账号批量发送邮件。支持两种发送方式：</p>
+            <ul>
+                <li><strong>直接发送</strong>：表格自带邮箱、主题和正文列，逐行直接发送</li>
+                <li><strong>模板发送</strong>：预先保存主题/正文模板，用表格中的列值填充 <code>{占位符}</code></li>
+            </ul>
+            <blockquote>🛡️ 所有模板配置和任务状态仅保存在浏览器本地缓存中，<strong>服务端不采集任何邮箱或邮件内容敏感数据</strong>。</blockquote>
+            <p>发送过程中即使关闭侧边栏或电脑锁屏，下次打开侧边栏会自动提示是否恢复未完成的任务。</p>
+        </section>
+
+        <!-- ===== 使用流程 ===== -->
+        <section id="workflow" class="card">
+            <h2 class="card-title"><span class="icon">🚀</span>从 0 到 1 使用流程</h2>
+
+            <!-- 第1步 -->
+            <div id="step1">
+                <h3 class="card-subtitle">第1步：登录 Gmail 账号</h3>
+                <ol>
+                    <li>切换平台到「KOL建联」→ 进入「邮件群发引擎」Tab</li>
+                    <li>点击「<strong>登录 Gmail 账号</strong>」按钮</li>
+                    <li>弹出 Google 授权窗口，选择你的 Gmail 账号并同意发送权限</li>
+                </ol>
+
+                <p>初次登录时，Google 会弹出安全提示，只需按照以下 4 步点击即可完成登录：</p>
+
+                <div class="step-container">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">选择账号</div>
+                            <p>点击您的 <strong>谷歌/Gmail 账号</strong>。</p>
+                            <img src="images/image-20260909160626674.png" alt="选择账号截图" class="doc-img">
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">展开高级设置</div>
+                            <p>看到红色感叹号页面时，点击左下角的 <strong>Advanced（高级）</strong>。</p>
+                            <img src="images/image-20260909160652852.png" alt="Advanced截图" class="doc-img">
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">确认继续</div>
+                            <p>页面展开后，点击底部的 <strong>Go to KOL Finder... (unsafe)</strong> 进入授权。</p>
+                            <img src="images/image-20260909160802984.png" alt="Go to截图" class="doc-img">
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">授予权限</div>
+                            <p>点击右下角 <strong>Continue（继续）</strong>，即可完成登录并开始使用！</p>
+                            <img src="images/image-20260909160830828.png" alt="Continue截图" class="doc-img">
+                        </div>
+                    </div>
+                </div>
+
+                <blockquote>
+                    <strong>请您放心使用！</strong>由于 KOL Finder 采用了<strong>本地数据直连技术</strong>，所有邮件均由您的本地浏览器直接发出，<strong>我们不会在云端存储您的任何 Gmail 账号数据</strong>。也正因如此，软件未申请 Google 的企业级云端商业认证（该认证要求将数据上传至第三方服务器审查）。提示仅代表软件未做商业云端备案，完全不影响您的账号安全，按照指引点击 <code>Advanced</code> → <code>Go to...</code> 即可正常使用。
+                </blockquote>
+
+                <p>授权后显示账号邮箱和「已连接」状态。</p>
+                <img src="images/image-20260908114455087.png" alt="已连接状态截图" class="doc-img">
+
+                <p><strong>退出登录</strong>：点击右下角「退出登录」链接，会清除本机授权缓存。下次登录时可选择其他 Google 账号。</p>
+            </div>
+
+            <!-- 第2步 -->
+            <div id="step2">
+                <h3 class="card-subtitle">第2步：准备发送素材</h3>
+                <p>表格格式要求：</p>
+                <ul>
+                    <li>文件类型：<code>.xlsx</code> 或 <code>.csv</code></li>
+                    <li>第一行为表头，从第二行起每行发送 1 封邮件</li>
+                    <li>必须有一列列名包含 <code>邮箱</code>（作为收件地址）</li>
+                    <li>其他列可在主题/正文模板中用 <code>{列名}</code> 引用</li>
+                </ul>
+
+                <h4 style="margin-top:20px;">模板发送</h4>
+                <p>示例表结构（<strong>模板发送，只需要邮箱和占位符列</strong>）：</p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                        <tr><th>邮箱</th><th>昵称</th><th>粉丝数</th><th>平均互动率</th><th>红人简介</th></tr>
+                        </thead>
+                        <tbody>
+                        <tr><td>a@xx.com</td><td>McKenna Lynn</td><td>Alice</td><td>2.2%</td><td>xxxx</td></tr>
+                        <tr><td>b@xx.com</td><td>zz</td><td>Bob</td><td>2.2%</td><td>xxxxxxx</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>模板示例：</p>
+                <div class="code-block">主题 : 合作邀请 - <strong>{昵称}</strong>
+
+                    正文 : 嗨 <strong>{昵称}</strong>！
+
+                    看到你写得"{用户简介}"，就知道你的粉丝群体跟我们的产品非常契合。
+
+                    凭借你 <strong>{{粉丝数}}</strong> 的账号体量和 <strong>{平均互动率}</strong> 的强互动，你的种草说服力非常强。我们现在有一个高佣金的带货计划，你只需要挂个专属折扣链接，粉丝下单你就能直接拿提成。我们负责提供所有精美的图片和文案，你完全不需要写稿，轻松又省心。
+
+                    有兴趣了解的话，<strong>直接回复"1"</strong>，我马上把详细的资料和样品方案发你！</div>
+
+                <h4 style="margin-top:20px;">直接发送</h4>
+                <p>示例表结构：</p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                        <tr><th>邮箱</th><th>主题</th><th>正文</th></tr>
+                        </thead>
+                        <tbody>
+                        <tr><td>a@xx.com</td><td>合作邀请</td><td>你好 Alice，希望...</td></tr>
+                        <tr><td>b@xx.com</td><td>合作邀请</td><td>你好 Bob，希望...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 第3步 -->
+            <div id="step3">
+                <h3 class="card-subtitle">第3步：配置模板（仅模板发送需要）</h3>
+                <ol>
+                    <li>切换到「发送模板配置」Tab</li>
+                    <li>填写邮件主题模板和正文模板，支持 <code>{列名}</code> 变量</li>
+                    <li>点击「保存模板」→ 保存到浏览器本地缓存</li>
+                    <li>下次使用无需重复填写，直接在「邮件群发」Tab 选择「模板发送」即可</li>
+                </ol>
+                <blockquote>🔒 <strong>隐私说明</strong>：模板仅保存在本机浏览器扩展缓存中，服务端不会采集任何邮箱或邮件内容数据。</blockquote>
+            </div>
+
+            <!-- 第4步 -->
+            <div id="step4">
+                <h3 class="card-subtitle">第4步：选择发送模式并预览</h3>
+                <p>回到「邮件群发」Tab，在「发送模式与预览」区：</p>
+                <ol>
+                    <li><strong>选择发送模式</strong>：
+                        <ul>
+                            <li><strong>直接发送</strong>：表格须含邮箱/主题/正文列，逐行直接用表格内容发送</li>
+                            <li><strong>模板发送</strong>：使用已保存模板，表格须含模板中所有 <code>{占位符}</code> 对应的列</li>
+                        </ul>
+                    </li>
+                    <li><strong>校验提示</strong>：
+                        <ul>
+                            <li><span class="msg-success">✓ 绿色提示</span> = 校验通过，可开始发送</li>
+                            <li><span class="msg-error">✕ 红色提示</span> = 缺少列或占位符不匹配，需补充表格或修改模板</li>
+                        </ul>
+                    </li>
+                    <li><strong>发送内容预览</strong>：
+                        <ul>
+                            <li>导入文件后会自动显示第一条邮件预览（收件邮箱、主题、正文）</li>
+                            <li>点击「‹ 上一条」/「下一条 ›」翻动浏览</li>
+                            <li>第一条禁用「上一条」，最后一条禁用「下一条」</li>
+                            <li>位置显示「N / M」当前索引/总数</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- 第5步 -->
+            <div id="step5">
+                <h3 class="card-subtitle">第5步：设置发送参数并开始发送</h3>
+                <ol>
+                    <li>设置「<strong>发送间隔（秒/封）</strong>」：建议 30 秒以上，避免被 Gmail 限流</li>
+                    <li>设置「<strong>每日上限（封）</strong>」：默认 50，达到后自动停止</li>
+                    <li>点击「开始发送」→ 进入发送循环</li>
+                    <li>状态栏显示进度（如 <code>已发送 5/30</code>）</li>
+                    <li>日志区逐条显示成功/失败明细</li>
+                </ol>
+                <p><strong>发送控制</strong>：</p>
+                <ul>
+                    <li>「<strong>暂停</strong>」：暂停发送，可点「继续」恢复</li>
+                    <li>「<strong>停止</strong>」：停止发送，已发送的不会重复</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===== 异常恢复 ===== -->
+        <section id="recovery" class="card">
+            <h2 class="card-title"><span class="icon">🔄</span>异常恢复机制</h2>
+            <p>发送过程中如果发生意外中断，本功能会自动保存进度并在下次打开侧边栏时恢复。</p>
+
+            <h3 class="card-subtitle">触发异常恢复的场景</h3>
+            <ol>
+                <li><strong>关闭侧边栏</strong>：发送中关闭侧边栏 → JS 上下文销毁 → 下次打开侧边栏自动弹窗提示</li>
+                <li><strong>电脑锁屏后关闭侧边栏</strong>：锁屏期间侧边栏未关闭时，Chrome 会节流定时器但不销毁上下文，解锁后发送自然继续；如果在锁屏期间关闭了侧边栏，靠 <code>chrome.storage.local</code> 持久化在重开时恢复</li>
+                <li><strong>Gmail 授权失效</strong>：发送中返回 401 → 自动暂停 → 提示重新授权 → 重新登录后点「继续」</li>
+                <li><strong>网络波动</strong>：单封发送失败自动跳过，不停止整个任务</li>
+            </ol>
+
+            <h3 class="card-subtitle">恢复流程</h3>
+            <ol>
+                <li>每封邮件发送后（成功或失败）立即将剩余队列保存到 <code>chrome.storage.local</code></li>
+                <li>下次打开侧边栏 → 自动检测到未完成任务 → 弹窗显示「剩余 N 封，已成功 M 封，失败 K 封」</li>
+                <li>点「继续」→ 自动切回邮件 Tab → 恢复队列和配置 → 验证 token → 重启发送循环</li>
+                <li>点「放弃」→ 清除任务状态 → 可重新开始</li>
+            </ol>
+
+            <h3 class="card-subtitle">异常恢复时的日限检查</h3>
+            <p>恢复时会检查今日已发送数是否达日限：若已达限，任务自动结束，不会超发。</p>
+        </section>
+
+        <!-- ===== 字段识别 ===== -->
+        <section id="fields" class="card">
+            <h2 class="card-title"><span class="icon">🔍</span>字段识别规则</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr><th>字段</th><th>识别列名（不区分大小写）</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>收件邮箱</td><td><code>email</code>、<code>邮箱</code>、<code>e-mail</code>、<code>mail</code>、<code>emailaddress</code></td></tr>
+                    <tr><td>主题</td><td><code>subject</code>、<code>主题</code>、<code>邮件主题</code></td></tr>
+                    <tr><td>正文</td><td><code>body</code>、<code>content</code>、<code>正文</code>、<code>邮件内容</code>、<code>message</code></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>一个单元格含多个邮箱时取第一个。</p>
+        </section>
+
+        <!-- ===== 模板语法 ===== -->
+        <section id="template-syntax" class="card">
+            <h2 class="card-title"><span class="icon">📝</span>模板语法</h2>
+            <ul>
+                <li>用 <code>{列名}</code> 引用表格列值，如 <code>{name}</code>、<code>{username}</code></li>
+                <li>发送时自动替换为该行对应列的内容</li>
+                <li>列名不区分大小写、忽略首尾空格</li>
+                <li>模板发送时，模板中所有占位符必须能在表格中找到对应列，否则校验不通过</li>
+            </ul>
+            <div class="note">💡 <strong>小提示</strong>：模板中的 <code>{列名}</code> 区分大小写不敏感，但建议保持与表头一致以免混淆。</div>
+        </section>
+
+        <!-- ===== 常见问题 ===== -->
+        <section id="faq" class="card">
+            <h2 class="card-title"><span class="icon">❓</span>常见问题</h2>
+
+            <div class="faq-item">
+                <div class="faq-q">Q：直接发送和模板发送的区别？</div>
+                <div class="faq-a">直接发送用表格里的主题/正文列；模板发送用已保存的模板+表格占位符替换。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Q：模板保存在哪里？会被上传吗？</div>
+                <div class="faq-a">模板保存在 Chrome 浏览器本地扩展缓存中，不会上传服务端，不采集任何邮箱敏感数据。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Q：发送失败的邮件会重发吗？</div>
+                <div class="faq-a">不会，失败自动跳过，不重复发送。失败原因见日志区。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Q：如何切换 Gmail 发件账号？</div>
+                <div class="faq-a">点「退出登录」清除本机授权缓存，再点「登录 Gmail 账号」，在弹窗中选择其他 Google 账号。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Q：锁屏后发送会继续吗？</div>
+                <div class="faq-a">侧边栏未关闭时，Chrome 节流定时器但不销毁，解锁后自然继续。侧边栏关闭时靠本地缓存，重开时弹窗恢复。</div>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<script>
+    // 滚动高亮导航
+    window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+        let current = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (window.scrollY >= sectionTop - 120) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
